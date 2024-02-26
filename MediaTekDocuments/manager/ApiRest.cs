@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 namespace MediaTekDocuments.manager
 {
@@ -58,57 +60,35 @@ namespace MediaTekDocuments.manager
             return instance;
         }
 
-        /// <summary>
-        /// Envoi une demande à l'API et récupère la réponse
-        /// </summary>
-        /// <param name="methode">verbe http (GET, POST, PUT, DELETE)</param>
-        /// <param name="message">message à envoyer dans l'URL</param>
-        /// <returns>liste d'objets (select) ou liste vide (ok) ou null si erreur</returns>
-        /*public JObject RecupDistant(string methode, string message)
+       
+
+        public JObject RecupDistant(string methode, string url, string jsonBody = null)
         {
-            // envoi du message et attente de la réponse
-            switch (methode)
+             HttpResponseMessage httpResponse = null;
+            HttpContent content = jsonBody != null ? new StringContent(jsonBody, Encoding.UTF8, "application/json") : null;
+
+            Console.WriteLine($"Méthode: {methode}");
+            Console.WriteLine($"URL: {url}");
+            if (jsonBody != null)
             {
-                case "GET":
-                    httpResponse = httpClient.GetAsync(message).Result;
-                    break;
-                case "POST":
-                    httpResponse = httpClient.PostAsync(message, null).Result;
-                    break;
-                case "PUT":
-                    httpResponse = httpClient.PutAsync(message, null).Result;
-                    break;
-                case "DELETE":
-                    httpResponse = httpClient.DeleteAsync(message).Result;
-                    break;
-                // methode incorrecte
-                default:
-                    return new JObject();
+                Console.WriteLine($"Corps de la requête: {jsonBody}");
             }
-            // récupération de l'information retournée par l'api
-
-            return httpResponse.Content.ReadAsAsync<JObject>().Result;
-        }*/
-
-        public JObject RecupDistant(string methode, string message)
-        {
-            HttpResponseMessage httpResponse = null;
-
             switch (methode)
             {
                 case "GET":
-                    httpResponse = httpClient.GetAsync(message).Result;
+                    Console.WriteLine($"Envoi d'une requête get  avec le corps " +jsonBody+" et l'url "+url);
+                    httpResponse = httpClient.GetAsync(url).Result;
                     break;
                 case "POST":
-                    // Vous devrez peut-être créer un HttpContent pour l'envoi
-                    httpResponse = httpClient.PostAsync(message, null).Result;
+                    Console.WriteLine($"Envoi d'une requête post  avec le corps " + jsonBody);
+                    httpResponse = httpClient.PostAsync(url, content).Result;
                     break;
                 case "PUT":
-                    // Vous devrez peut-être créer un HttpContent pour l'envoi
-                    httpResponse = httpClient.PutAsync(message, null).Result;
+                    httpResponse = httpClient.PutAsync(url, content).Result;
                     break;
                 case "DELETE":
-                    httpResponse = httpClient.DeleteAsync(message).Result;
+                    Console.WriteLine($"Envoi d'une requête delete  avec le corps " + jsonBody);
+                    httpResponse = httpClient.DeleteAsync(url).Result;
                     break;
                 default:
                     return new JObject();
@@ -116,15 +96,30 @@ namespace MediaTekDocuments.manager
 
             if (httpResponse == null || !httpResponse.IsSuccessStatusCode)
             {
-                Console.WriteLine("httpresponse is null");
+                Console.WriteLine("httpresponse is null or failed");
                 return new JObject();
             }
+            Console.WriteLine("HTT RESPONSE IDENTIFIED " + httpResponse);
 
             var responseString = httpResponse.Content.ReadAsStringAsync().Result;
-            Console.WriteLine("Réponse JSON complète: " + responseString);
+            var cleanedResponseString = responseString;
+            if (responseString.StartsWith("champs = "))
+            {
+                cleanedResponseString = responseString.Substring("champs = ".Length);
+            }
 
-            return JObject.Parse(responseString);
+            Console.WriteLine("Réponse JSON complèteeee: " + cleanedResponseString);
+
+            return JObject.Parse(cleanedResponseString);
         }
+
+
+      
+        // Exemple d'utilisation
+
+
+
     }
+
 
 }

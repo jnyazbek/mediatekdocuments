@@ -6,6 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
 using System.IO;
+using System.Windows.Shapes;
+using System.Windows.Documents;
+using Newtonsoft.Json.Bson;
+using System.Diagnostics;
+using System.Text;
 
 namespace MediaTekDocuments.view
 
@@ -28,6 +33,8 @@ namespace MediaTekDocuments.view
         {
             InitializeComponent();
             this.controller = new FrmMediatekController();
+            RemplirComboBoxSuivi();
+
         }
 
         /// <summary>
@@ -49,7 +56,7 @@ namespace MediaTekDocuments.view
 
         #region Onglet Livres
         private readonly BindingSource bdgLivresListe = new BindingSource();
-        private List<Livre> lesLivres = new List<Livre>();
+        private List<Livre> lesLivres;
 
         /// <summary>
         /// Ouverture de l'onglet Livres : 
@@ -102,6 +109,7 @@ namespace MediaTekDocuments.view
                 if (livre != null)
                 {
                     List<Livre> livres = new List<Livre>() { livre };
+                    Console.WriteLine("btnLivresNumRecherche activated");
                     RemplirLivresListe(livres);
                 }
                 else
@@ -989,7 +997,7 @@ namespace MediaTekDocuments.view
         }
         #endregion
 
-        #region Onglet Paarutions
+        #region Onglet Parutions
         private readonly BindingSource bdgExemplairesListe = new BindingSource();
         private List<Exemplaire> lesExemplaires = new List<Exemplaire>();
         const string ETATNEUF = "00001";
@@ -1101,8 +1109,8 @@ namespace MediaTekDocuments.view
         /// </summary>
         private void AfficheReceptionExemplairesRevue()
         {
-            string idDocuement = txbReceptionRevueNumero.Text;
-            lesExemplaires = controller.GetExemplairesRevue(idDocuement);
+            string idDocument = txbReceptionRevueNumero.Text;
+            lesExemplaires = controller.GetExemplairesRevue(idDocument);
             RemplirReceptionExemplairesListe(lesExemplaires);
             AccesReceptionExemplaireGroupBox(true);
         }
@@ -1132,7 +1140,7 @@ namespace MediaTekDocuments.view
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
                 // positionnement à la racine du disque où se trouve le dossier actuel
-                InitialDirectory = Path.GetPathRoot(Environment.CurrentDirectory),
+                InitialDirectory = System.IO.Path.GetPathRoot(Environment.CurrentDirectory),
                 Filter = "Files|*.jpg;*.bmp;*.jpeg;*.png;*.gif"
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -1150,44 +1158,6 @@ namespace MediaTekDocuments.view
             }
         }
 
-        /// <summary>
-        /// Enregistrement du nouvel exemplaire
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnReceptionExemplaireValider_Click(object sender, EventArgs e)
-        {
-            if (!txbReceptionExemplaireNumero.Text.Equals(""))
-            {
-                try
-                {
-                    int numero = int.Parse(txbReceptionExemplaireNumero.Text);
-                    DateTime dateAchat = dtpReceptionExemplaireDate.Value;
-                    string photo = txbReceptionExemplaireImage.Text;
-                    string idEtat = ETATNEUF;
-                    string idDocument = txbReceptionRevueNumero.Text;
-                    Exemplaire exemplaire = new Exemplaire(numero, dateAchat, photo, idEtat, idDocument);
-                    if (controller.CreerExemplaire(exemplaire))
-                    {
-                        AfficheReceptionExemplairesRevue();
-                    }
-                    else
-                    {
-                        MessageBox.Show("numéro de publication déjà existant", "Erreur");
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("le numéro de parution doit être numérique", "Information");
-                    txbReceptionExemplaireNumero.Text = "";
-                    txbReceptionExemplaireNumero.Focus();
-                }
-            }
-            else
-            {
-                MessageBox.Show("numéro de parution obligatoire", "Information");
-            }
-        }
 
         /// <summary>
         /// Tri sur une colonne
@@ -1238,6 +1208,1437 @@ namespace MediaTekDocuments.view
                 pcbReceptionExemplaireRevueImage.Image = null;
             }
         }
+
+        #endregion
+
+        #region Onglet CommandesLivres
+        private readonly BindingSource bindingSourceCommandesLivre = new BindingSource();
+        private List<CommandeDocument> lesCommandesDocument = new List<CommandeDocument>();
+        bool canUpdateSuivi = false;
+        /// <summary>
+        /// Ouverture de l'onglet Commandes de livres :
+        /// appel des méthodes pour remplir le datagrid des commandes de livre et du combo "suivi"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabCommandesLivres_Enter(object sender, EventArgs e)
+        {
+            lesLivres = controller.GetAllLivres();
+
+            // Remplir la ComboBox
+            RemplirComboBoxSuivi();
+
+            // Sélectionner automatiquement le premier élément
+            comboBoxSuivi.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// recherche les information sur le document sélectionné
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRechercheNumDoc_Click(object sender, EventArgs e)
+        {
+            string numdoc = textBoxNumDoc.Text;
+            Console.WriteLine("button recherche num doc " + numdoc);
+            if (numdoc != null)
+            {
+                lesCommandesDocument = controller.GetCommandesDocuments(numdoc);
+                foreach (CommandeDocument commande in lesCommandesDocument)
+                {
+                    Console.WriteLine("ID: " + commande.Id + ", Nb Exemplaires: " + commande.NbExemplaire + ", ID Livre/DVD: " + commande.IdLivreDvd + ", ID Suivi: " + commande.IdSuivi + ", Date: " + commande.Date + ", Montant: " + commande.Montant);
+                }
+
+                RemplirCommandesLivresListe(lesCommandesDocument);
+            }
+
+
+            if (!textBoxNumDoc.Text.Equals(""))
+            {
+                Livre livre = lesLivres.Find(x => x.Id.Equals(numdoc));
+                if (livre != null)
+                {
+                    AfficheLivreCommandeInfos(livre);
+                }
+                else
+                {
+                    MessageBox.Show("numéro introuvable");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Remplit la datagrid avec la liste reçue en paramètre
+        /// </summary>
+        /// <param name="lesCommandesDocument">Liste des commandes d'un document</param>
+        private void RemplirCommandesLivresListe(List<CommandeDocument> lesCommandesDocument)
+        {
+            if (lesCommandesDocument != null)
+            {
+                bindingSourceCommandesLivre.DataSource = lesCommandesDocument;
+                dataGridViewLivres.DataSource = bindingSourceCommandesLivre;
+                foreach (CommandeDocument commande in lesCommandesDocument)
+                {
+                    Console.WriteLine(" remplircommandeslivres liste id " + commande.Id + "date " + commande.Date + "libelle " + commande.Suivi.Libelle);
+                }
+                dataGridViewLivres.Columns["id"].Visible = true;
+                dataGridViewLivres.Columns["idLivreDvd"].Visible = false;
+                dataGridViewLivres.Columns["idSuivi"].Visible = false;
+                dataGridViewLivres.Columns["Suivi"].Visible = false;
+                dataGridViewLivres.Columns["Libelle"].Visible = false;
+                dataGridViewLivres.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridViewLivres.Columns["date"].DisplayIndex = 4;
+                dataGridViewLivres.Columns["montant"].DisplayIndex = 1;
+                dataGridViewLivres.Columns["id"].DisplayIndex = 0;
+                dataGridViewLivres.Columns[4].HeaderCell.Value = "Date de commande";
+                dataGridViewLivres.Columns[1].HeaderCell.Value = "Nombre d'exemplaires";
+                
+                dataGridViewLivres.Columns["LibelleSuivi"].HeaderText = "Suivi";
+
+
+            }
+            else
+            {
+                bindingSourceCommandesLivre.DataSource = null;
+            }
+        }
+        /// <summary>
+        /// efface les champs d'information sur le document lorsque le numéro est changé
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNumDoc_TextChanged(object sender, EventArgs e)
+        {
+
+            textBoxTitre.Text = "";
+            textBoxAuteur.Text = "";
+            textBoxCollection.Text = "";
+            textBoxGenre.Text = "";
+            textBoxPublic.Text = "";
+            textBoxRayon.Text = "";
+            RemplirCommandesLivresListe(null);
+            comboBoxSuivi.SelectedIndex = 0;
+            numeroSuivi.Text = null;
+            
+        }
+        /// <summary>
+        /// afficher les information sur le livre recherché
+        /// </summary>
+        /// <param name="livre"></param>
+        private void AfficheLivreCommandeInfos(Livre livre)
+        {
+            textBoxTitre.Text = livre.Titre;
+            textBoxAuteur.Text = livre.Auteur;
+            textBoxCollection.Text = livre.Collection;
+            textBoxGenre.Text = livre.Genre;
+            textBoxPublic.Text = livre.Public;
+            textBoxRayon.Text = livre.Rayon;
+
+            string image = livre.Image;
+            try
+            {
+                pictureBoxLivre.Image = Image.FromFile(image);
+            }
+            catch
+            {
+                pictureBoxLivre.Image = null;
+            }
+
+
+        }
+
+
+        /// <summary>
+        /// créé un nouveau document
+        /// </summary>
+        /// <returns></returns>
+        private CommandeDocument CreateCommandeDocument()
+        {
+            string numcommande = GetLastNumCommandes();
+            string numlivre = textBoxAddNumLivre.Text;
+            int nbExemplaire = Convert.ToInt32(textBoxAddNbEx.Text);
+            double montant = Convert.ToDouble(textBoxAddMontant.Text);
+            DateTime date = dateTimePickerAdd.Value;
+            Suivi suivi = CreateSuivi();
+            if (numcommande != "" && numlivre != "" && nbExemplaire != null && date != null && suivi != null)
+            {
+                CommandeDocument commande = new CommandeDocument(numcommande, date, montant, nbExemplaire, numlivre, suivi.Id, suivi.Libelle);
+
+                return commande;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        /// <summary>
+        /// créé un nouveau suvi
+        /// </summary>
+        /// <returns></returns>
+        private Suivi CreateSuivi()
+        {
+            List<Suivi> lesSuivi = controller.GetAllSuivi();
+            int idSuivi = 0;
+            string Libelle = "En cours";
+            foreach (Suivi suivi in lesSuivi)
+            {
+
+                if (Convert.ToInt32(suivi.Id) > idSuivi)
+                {
+                    idSuivi = Convert.ToInt32(suivi.Id);
+                }
+
+            }
+            string newId = (idSuivi + 1).ToString();
+            Suivi newSuivi = new Suivi(newId, Libelle);
+            Console.WriteLine("create suivi id " + newId);
+            return newSuivi;
+        }
+        /// <summary>
+        /// récupère le dernier numéro de commande et retourne ce nombre +1
+        /// </summary>
+        /// <returns></returns>
+        private string GetLastNumCommandes()
+        {
+            List<Commande> commandes = controller.GetAllCommandes();
+            int numCommande = 0;
+            foreach (Commande commande in commandes)
+            {
+                if (Convert.ToInt32(commande.Id) > numCommande)
+                {
+                    numCommande = Convert.ToInt32(commande.Id);
+                }
+            }
+            string newNumCommande = (numCommande + 1).ToString();
+            return newNumCommande;
+
+        }
+        /// <summary>
+        /// ajoute une nouvelle commande
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddCom_Click(object sender, EventArgs e)
+        {
+
+            if (!string.IsNullOrEmpty(textBoxAddNumLivre.Text) &&
+                !string.IsNullOrEmpty(textBoxAddMontant.Text) &&
+                !string.IsNullOrEmpty(textBoxAddNbEx.Text))
+
+            {
+                bool livreExsite = false;
+                string numlivre = null;
+                foreach (Livre livre in lesLivres)
+                {
+                    if (textBoxAddNumLivre.Text == livre.Id)
+                    {
+                        livreExsite = true;
+                        numlivre = livre.Id;
+                        break;
+                    }
+                }
+                if (livreExsite == true)
+                {
+                    Console.WriteLine("clik validé xxxxxxxxxxxxxxxxxxxx");
+                    CommandeDocument commande = CreateCommandeDocument();
+
+                    controller.AddCommandeDocument(commande);
+                    
+                    textBoxNumDoc.Text = numlivre;
+                    buttonRechercheNumDoc_Click(buttonRechercheNumDoc, new EventArgs());
+                }
+                else
+                {
+                    MessageBox.Show("Livre non exsitant.");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez remplir toutes les informations sur la commande.");
+
+            }
+
+
+        }
+        //permet de suivre le numero de commande selectionné
+        string selectedCommandeDocument = null;
+        /// <summary>
+        /// permet de selectionnner une commande
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridViewLivres_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Accéder à la ligne où le clic a eu lieu
+                DataGridViewRow row = dataGridViewLivres.Rows[e.RowIndex];
+
+
+                string idcommande = row.Cells[3].Value.ToString();
+                selectedCommandeDocument = idcommande;
+                numeroSuivi.Text = idcommande;
+                comboBoxSuivi.SelectedIndex = 2;
+                try
+                {
+                    string libelle = row.Cells[8].Value.ToString();
+                    switch (libelle)
+                    {
+                        case "En cours":
+                            comboBoxSuivi.SelectedIndex = 0;
+                            break;
+                        case "Relancée":
+                            comboBoxSuivi.SelectedIndex = 1;
+                            break;
+                        case "Livrée":
+                            comboBoxSuivi.SelectedIndex = 2;
+                            break;
+                        case "Réglée":
+                            comboBoxSuivi.SelectedIndex = 3;
+                            break;
+                    }
+                    Console.WriteLine("Vous avez cliqué sur la commande : " + idcommande);
+                    Console.WriteLine("Le suivi est  : " + libelle);
+                }
+                catch
+                {
+                    Console.WriteLine("erreur de selected value");
+                }
+
+            }
+
+        }
+        /// <summary>
+        /// permet la modification de l'étape de suivi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxSuivi_DropDown(object sender, EventArgs e)
+        {
+            canUpdateSuivi = true;
+        }
+        /// <summary>
+        /// Change l'etape de suivi dans la bdd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxSuivi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (numeroSuivi.Text != null && numeroSuivi.Text != "" && canUpdateSuivi == true)
+            {
+                string numSuivi = numeroSuivi.Text;
+
+
+                string libelle = comboBoxSuivi.Text;
+                controller.ChangeSuivi(numSuivi, libelle);
+                Console.WriteLine("The combobox selected suivi is " + libelle);
+                canUpdateSuivi = false;
+
+                foreach (CommandeDocument commande in lesCommandesDocument)
+                {
+                    if (commande.Id == numSuivi)
+                    {
+                        commande.Suivi.Libelle = libelle;
+                        Console.WriteLine("commade document modifiée " + commande.Id);
+                        break;
+                    }
+
+                }
+                bindingSourceCommandesLivre.DataSource = lesCommandesDocument;
+                bindingSourceCommandesLivre.ResetBindings(false);
+
+                dataGridViewLivres.DataSource = bindingSourceCommandesLivre;
+            }
+        }
+
+        /// <summary>
+        /// rempli les différents options de suivi
+        /// </summary>
+        private void RemplirComboBoxSuivi()
+        {
+
+            comboBoxSuivi.Items.Clear();
+            comboBoxSuivi.Items.Add("En cours");
+            comboBoxSuivi.Items.Add("Relancée");
+            comboBoxSuivi.Items.Add("Livrée");
+            comboBoxSuivi.Items.Add("Réglée");
+            Console.WriteLine("RemplirComboBoxSuivi executed. Items count: " + comboBoxSuivi.Items.Count);
+
+        }
+        /// <summary>
+        /// prépare l'onglet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmMediatek_Load(object sender, EventArgs e)
+        {
+            RemplirComboBoxSuivi();
+            RemplirComboBoxSuiviDVD();
+            comboBoxSuivi.SelectedIndex = 0; // Sélectionne le premier élément
+            comboBoxSuiviDVD.SelectedIndex = 0;
+        }
+        /// <summary>
+        /// supprime une commande
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDelCom_Click(object sender, EventArgs e)
+        {
+            foreach (CommandeDocument commande in lesCommandesDocument)
+            {
+                Console.WriteLine("seleted commande id is " + selectedCommandeDocument + " and this command id is " + commande.Id);
+                if (commande.Id == selectedCommandeDocument)
+                {
+                    Console.WriteLine("Delete commande numùber " + commande.Id);
+
+                    controller.DeleteCommandeDocument(commande);
+                    lesCommandesDocument.Remove(commande);
+                    bindingSourceCommandesLivre.DataSource = lesCommandesDocument;
+                    bindingSourceCommandesLivre.ResetBindings(false);
+
+                    dataGridViewLivres.DataSource = bindingSourceCommandesLivre;
+                    numeroSuivi.Text = null;
+                    selectedCommandeDocument = null;
+
+
+                    break;
+                }
+            }
+
+
+        }
+        /// <summary>
+        /// seul les chiffres 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxAddNumLivre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+
+        private void textBoxAddNbEx_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+
+        private void textBoxAddMontant_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+
+        private void textBoxNumDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+
+        bool orderLivreASC = true;
+        private void dataGridViewLivres_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Onglet CommandesDVD
+
+        private readonly BindingSource bindingSourceCommandesDVD = new BindingSource();
+        private List<CommandeDocument> lesCommandesDVD = new List<CommandeDocument>();
+        bool canUpdateSuiviDVD = false;
+
+        private void tabCommandeDVD_Enter(object sender, EventArgs e)
+        {
+            
+            lesDvd = controller.GetAllDvd();
+            foreach (var dvd in lesDvd)
+            {
+                Console.Write("dvd ajouté id n° "+dvd.Id);
+            }
+            // Remplir la ComboBox
+            RemplirComboBoxSuiviDVD();
+
+            // Sélectionner automatiquement le premier élément
+            comboBoxSuivi.SelectedIndex = 0;
+            lesCommandesDVD = controller.GetAllCommandesDocument();
+        }
+
+        
+        /// <summary>
+        /// recherche  les information sur le dvd selectionné
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRechercheDVD_Click(object sender, EventArgs e)
+        {
+            string numdoc = textBoxNumDVD.Text;
+            Console.WriteLine("button recherche num dvd " + numdoc);
+            if (numdoc != null)
+            {
+                lesCommandesDVD = controller.GetCommandesDVD(numdoc);
+                foreach (CommandeDocument commande in lesCommandesDVD)
+                {
+                    Console.WriteLine("ID: " + commande.Id + ", Nb Exemplaires: " + commande.NbExemplaire + ", ID Livre/DVD: " + commande.IdLivreDvd + ", ID Suivi: " + commande.IdSuivi + ", Date: " + commande.Date + ", Montant: " + commande.Montant);
+                }
+
+                RemplirCommandesDVDListe(lesCommandesDVD);
+            }
+
+
+            if (!textBoxNumDVD.Text.Equals(""))
+            {
+                Dvd dvd = lesDvd.Find(x => x.Id.Equals(numdoc));
+                if (dvd != null)
+                {
+                    AfficheDVDCommandeInfos(dvd);
+                }
+                else
+                {
+                    MessageBox.Show("numéro introuvable");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Remplit la datagrid avec la liste reçue en paramètre
+        /// </summary>
+        /// <param name="lesCommandesDocument">Liste des commandes d'un document</param>
+        private void RemplirCommandesDVDListe(List<CommandeDocument> lesCommandesDVD)
+        {
+            if (lesCommandesDVD != null)
+            {
+                bindingSourceCommandesDVD.DataSource = lesCommandesDVD;
+                dataGridViewDVD.DataSource = bindingSourceCommandesDVD;
+                foreach (CommandeDocument commande in lesCommandesDVD)
+                {
+                    Console.WriteLine(" remplircommandeslivres liste id " + commande.Id + "date " + commande.Date + "libelle " + commande.Suivi.Libelle);
+                }
+                dataGridViewDVD.Columns["id"].Visible = true;
+                dataGridViewDVD.Columns["idLivreDvd"].Visible = false;
+                dataGridViewDVD.Columns["idSuivi"].Visible = false;
+                dataGridViewDVD.Columns["Suivi"].Visible = false;
+                dataGridViewDVD.Columns["Libelle"].Visible = false;
+                dataGridViewDVD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridViewDVD.Columns["date"].DisplayIndex = 4;
+                dataGridViewDVD.Columns["montant"].DisplayIndex = 1;
+                dataGridViewDVD.Columns["id"].DisplayIndex = 0;
+                dataGridViewDVD.Columns[4].HeaderCell.Value = "Date de commande";
+                dataGridViewDVD.Columns[1].HeaderCell.Value = "Nombre d'exemplaires";
+                dataGridViewDVD.Columns["LibelleSuivi"].HeaderText = "Suivi";
+
+
+            }
+            else
+            {
+                bindingSourceCommandesDVD.DataSource = null;
+            }
+        }
+        /// <summary>
+        /// affifche les information sur le dvd
+        /// </summary>
+        /// <param name="dvd"></param>
+        private void AfficheDVDCommandeInfos(Dvd dvd)
+        {
+            textBoxTitreDVD.Text = dvd.Titre;
+            textBoxRealDVD.Text = dvd.Realisateur;
+            textBoxDureeDVD.Text = dvd.Duree.ToString();
+            textBoxGenreDVD.Text = dvd.Genre;
+            textBoxPublicDVD.Text = dvd.Public;
+            textBoxRayonDVD.Text = dvd.Rayon;
+            textBoxSynopsisDVD.Text = dvd.Synopsis;
+
+            string image = dvd.Image;
+
+            try
+            {
+                pictureBoxCouvertureDVD.Image = Image.FromFile(image);
+            }
+            catch
+            {
+                pictureBoxCouvertureDVD.Image = null;
+            }
+
+
+        }
+        /// <summary>
+        /// ajoute les étapes de suivi
+        /// </summary>
+        private void RemplirComboBoxSuiviDVD()
+        {
+
+            comboBoxSuiviDVD.Items.Clear();
+            comboBoxSuiviDVD.Items.Add("En cours");
+            comboBoxSuiviDVD.Items.Add("Relancée");
+            comboBoxSuiviDVD.Items.Add("Livrée");
+            comboBoxSuiviDVD.Items.Add("Réglée");
+            Console.WriteLine("RemplirComboBoxSuivi executed. Items count: " + comboBoxSuivi.Items.Count);
+
+        }
+        /// <summary>
+        /// change l'étape de suivi dans la bdd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxSuiviDVD_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (numeroSuiviDVD.Text != null && numeroSuiviDVD.Text != "" && canUpdateSuivi == true)
+            {
+                string numSuivi = numeroSuiviDVD.Text;
+
+                string libelle = comboBoxSuiviDVD.Text;
+                controller.ChangeSuivi(numSuivi, libelle);
+                Console.WriteLine("The combobox selected suivi is " + libelle);
+                canUpdateSuivi = false;
+
+                foreach (CommandeDocument commande in lesCommandesDVD)
+                {
+                    if (commande.Id == numSuivi)
+                    {
+                        commande.Suivi.Libelle = libelle;
+                        Console.WriteLine("commade document modifiée " + commande.Id);
+                        break;
+                    }
+
+                }
+                bindingSourceCommandesDVD.DataSource = lesCommandesDVD;
+                bindingSourceCommandesDVD.ResetBindings(false);
+
+                dataGridViewDVD.DataSource = bindingSourceCommandesDVD;
+            } 
+        }
+
+        /// <summary>
+        /// permet la selection de la commande
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridViewDVD_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Accéder à la ligne où le clic a eu lieu
+                DataGridViewRow row = dataGridViewDVD.Rows[e.RowIndex];
+
+
+                string idcommande = row.Cells[3].Value.ToString();
+                selectedCommandeDocument = idcommande;
+                Console.WriteLine("selected id is " + idcommande);
+                numeroSuiviDVD.Text = idcommande;
+                
+                try
+                {
+                    string libelle = row.Cells[8].Value.ToString();
+                    switch (libelle)
+                    {
+                        case "En cours":
+                            comboBoxSuiviDVD.SelectedIndex = 0;
+                            break;
+                        case "Relancée":
+                            comboBoxSuiviDVD.SelectedIndex = 1;
+                            break;
+                        case "Livrée":
+                            comboBoxSuiviDVD.SelectedIndex = 2;
+                            break;
+                        case "Réglée":
+                            comboBoxSuiviDVD.SelectedIndex = 3;
+                            break;
+                    }
+                    Console.WriteLine("Vous avez cliqué sur la commande : " + idcommande);
+                    Console.WriteLine("Le suivi est  : " + libelle);
+                }
+                catch
+                {
+                    Console.WriteLine("erreur de selected value");
+                }
+
+            }
+        }
+        /// <summary>
+        ///autorise le changement de l'étape de suivi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxSuiviDVD_DropDown(object sender, EventArgs e)
+        {
+            canUpdateSuivi = true;
+        }
+        /// <summary>
+        /// efface les champs d'information lors d'un changement d'id
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNumDVD_TextChanged(object sender, EventArgs e)
+        {
+
+            textBoxTitreDVD.Text = "";
+            textBoxRealDVD.Text = "";
+            textBoxDureeDVD.Text = "";
+            textBoxGenreDVD.Text = "";
+            textBoxPublicDVD.Text = "";
+            textBoxRayonDVD.Text = "";
+            RemplirCommandesDVDListe(null);
+            comboBoxSuiviDVD.SelectedIndex = 0;
+            numeroSuiviDVD.Text = null;
+
+        }
+        /// <summary>
+        /// créée une commande de dvd
+        /// </summary>
+        /// <returns></returns>
+        private CommandeDocument CreateCommandeDVD()
+        {
+            string numcommande = GetLastNumCommandes();
+            string numlivre = textBoxAddNumDVD.Text;
+            int nbExemplaire = Convert.ToInt32(textBoxAddNbExDVD.Text);
+            double montant = Convert.ToDouble(textBoxAddMontantDVD.Text);
+            DateTime date = dateTimePickerAddDVD.Value;
+            Suivi suivi = CreateSuivi();
+            if (numcommande != "" && numlivre != "" && nbExemplaire != null && date != null && suivi != null)
+            {
+                CommandeDocument commande = new CommandeDocument(numcommande, date, montant, nbExemplaire, numlivre, suivi.Id, suivi.Libelle);
+
+                return commande;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        /// <summary>
+        /// ajoute la commandé créée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddCommandeDVD_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxAddNumDVD.Text) &&
+                !string.IsNullOrEmpty(textBoxAddMontantDVD.Text) &&
+                !string.IsNullOrEmpty(textBoxAddNbExDVD.Text))
+
+            {
+                bool dvdExsite = false;
+                string numDVD = null;
+                foreach (Dvd dvd in lesDvd)
+                {
+                    if (textBoxAddNumDVD.Text == dvd.Id)
+                    {
+                        dvdExsite = true;
+                        numDVD= dvd.Id;
+                        break;
+                    }
+                }
+                if (dvdExsite == true)
+                {
+                    Console.WriteLine("clik validé xxxxxxxxxxxxxxxxxxxx");
+                    CommandeDocument commande = CreateCommandeDVD();
+
+                    controller.AddCommandeDocument(commande);
+                    
+                    textBoxNumDVD.Text = numDVD;
+                    buttonRechercheDVD_Click(buttonRechercheDVD, new EventArgs());
+                }
+                else
+                {
+                    MessageBox.Show("Livre non exsitant.");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez remplir toutes les informations sur la commande.");
+
+            }
+        }
+        /// <summary>
+        /// supprime une commande dvd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDelCommandeDVD_Click(object sender, EventArgs e)
+        {
+            foreach (CommandeDocument commande in lesCommandesDVD)
+            {
+                Console.WriteLine("seleted commande id is " + selectedCommandeDocument + " and this command id is " + commande.Id);
+                if (commande.Id == selectedCommandeDocument)
+                {
+                    Console.WriteLine("Delete commande numùber " + commande.Id);
+
+                    controller.DeleteCommandeDocument(commande);
+                    lesCommandesDVD.Remove(commande);
+                    bindingSourceCommandesDVD.DataSource = lesCommandesDVD;
+                    bindingSourceCommandesDVD.ResetBindings(false);
+
+                    dataGridViewDVD.DataSource = bindingSourceCommandesDVD;
+                    numeroSuiviDVD.Text = null;
+                    selectedCommandeDocument = null;
+
+
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// seul les chiffres peuvent êtres utilisé dans ce champs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNumDVD_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+        /// <summary>
+        /// seul les chiffres peuvent êtres utilisé dans ce champs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxAddNumDVD_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+        /// <summary>
+        /// seul les chiffres peuvent êtres utilisé dans ce champs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxAddNbExDVD_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+        /// <summary>
+        /// seul les chiffres peuvent êtres utilisé dans ce champs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxAddMontantDVD_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+        /// <summary>
+        /// permet le tri par colonne
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridViewDVD_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            
+            string titreColonne = dataGridViewDVD.Columns[e.ColumnIndex].HeaderText;
+            List<CommandeDocument> sortedList = new List<CommandeDocument>();
+            switch (titreColonne)
+            {
+                case "Id":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDVD.OrderBy(o => o.Id).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDVD.OrderByDescending(o => o.Id).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "Date de commande":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDVD.OrderBy(o => o.Date).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDVD.OrderByDescending(o => o.Date).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "Montant":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDVD.OrderBy(o => o.Montant).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDVD.OrderByDescending(o => o.Montant).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "NbExemplaire":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDVD.OrderBy(o => o.NbExemplaire).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDVD.OrderByDescending(o => o.NbExemplaire).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "Suivi":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDVD.OrderBy(o => o.Suivi).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDVD.OrderByDescending(o => o.LibelleSuivi).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+               
+            }
+
+                RemplirCommandesDVDListe(sortedList);
+
+
+        }
+
+        #endregion
+
+        #region Onglet CommandesRevue
+
+        private readonly BindingSource bindingSourceCommandesRevue = new BindingSource();
+        private List<Abonnement> lesCommandesRevues = new List<Abonnement>();
+
+        private void tabCommandesRevue_Enter(object sender, EventArgs e)
+        {
+            lesRevues = controller.GetAllRevues();
+
+
+            lesCommandesRevues = controller.GetAllCommandesRevue();
+
+            DisplayFinAbo();
+        }
+
+        
+        /// <summary>
+        /// recherche et affiche les information sur la revue séléctionnée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRechercheRevue_Click(object sender, EventArgs e)
+        {
+            string numdoc = textBoxNumRevue.Text;
+            Console.WriteLine("button recherche num dvd " + numdoc);
+            if (numdoc != null)
+            {
+                lesCommandesRevues = controller.GetCommandesRevue(numdoc);
+                foreach (Abonnement commande in lesCommandesRevues)
+                {
+                    Console.WriteLine("ID: " + commande.Id  + ", ID Revue: " + commande.IdRevue  + ", Date: " + commande.Date + ", Montant: " + commande.Montant);
+                }
+
+                RemplirCommandesRevueListe(lesCommandesRevues);
+            }
+
+
+            if (!textBoxNumRevue.Text.Equals(""))
+            {
+                Revue revue = lesRevues.Find(x => x.Id.Equals(numdoc));
+                if (revue != null)
+                {
+                    AfficheRevueCommandeInfos(revue);
+                }
+                else
+                {
+                    MessageBox.Show("numéro introuvable");
+                }
+            }
+        }
+        /// <summary>
+        /// affiche les commandes correspondant a la revue selectionnée
+        /// </summary>
+        /// <param name="lesCommandesRevue"></param>
+        private void RemplirCommandesRevueListe(List<Abonnement> lesCommandesRevue)
+        {
+            if (lesCommandesRevue != null)
+            {
+                bindingSourceCommandesRevue.DataSource = lesCommandesRevue;
+                dataGridViewRevue.DataSource = bindingSourceCommandesRevue;
+                foreach (Abonnement commande in lesCommandesRevue)
+                {
+                    Console.WriteLine(" remplircommandeslivres liste id " + commande.Id + "date " + commande.Date + "libelle " + commande.Suivi.Libelle);
+                }
+
+                dataGridViewRevue.Columns["id"].Visible = false;
+                dataGridViewRevue.Columns["idRevue"].Visible = false;
+                dataGridViewRevue.Columns["titre"].Visible = false;
+                dataGridViewRevue.Columns["suivi"].Visible = false;
+                dataGridViewRevue.Columns["LibelleSuivi"].Visible = false;
+                dataGridViewRevue.Columns["Libelle"].Visible = false;
+                dataGridViewRevue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridViewRevue.Columns["date"].DisplayIndex = 0;
+                dataGridViewRevue.Columns["montant"].DisplayIndex = 1;
+                dataGridViewRevue.Columns[4].HeaderCell.Value = "Date de commande";
+                dataGridViewRevue.Columns[0].HeaderCell.Value = "Date de fin d'abonnement";
+
+
+
+            }
+            else
+            {
+                bindingSourceCommandesRevue.DataSource = null;
+            }
+        }
+        /// <summary>
+        /// remplis les champs d'information sur la revue
+        /// </summary>
+        /// <param name="revue"></param>
+        private void AfficheRevueCommandeInfos(Revue revue)
+        {
+            textBoxTitreRevue.Text = revue.Titre;
+            textBoxPeriodeRevue.Text = revue.Periodicite;
+            textBoxDelaisRevue.Text = revue.DelaiMiseADispo.ToString();
+            textBoxGenreRevue.Text = revue.Genre;
+            textBoxPublicRevue.Text = revue.Public;
+            textBoxRayonRevue.Text = revue.Rayon;
+
+
+
+        }
+
+        
+        /// <summary>
+        /// permet la selection d'une commande
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridViewRevue_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+                // Accéder à la ligne où le clic a eu lieu
+                DataGridViewRow row = dataGridViewRevue.Rows[e.RowIndex];
+
+
+                string idcommande = row.Cells[3].Value.ToString();
+                selectedCommandeDocument = idcommande;
+                Console.WriteLine("selected id is " + idcommande);
+                
+                try
+                {
+                   
+                    Console.WriteLine("Vous avez cliqué sur la commande : " + idcommande);
+                    
+                }
+                catch
+                {
+                    Console.WriteLine("erreur de selected value");
+                }
+
+            }
+        }
+        /// <summary>
+        /// efface les champs lors d'un changement de numéro de revue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNumRevue_TextChanged(object sender, EventArgs e)
+        {
+
+            textBoxTitreRevue.Text = "";
+            textBoxPeriodeRevue.Text = "";
+            textBoxDelaisRevue.Text = "";
+            textBoxGenreRevue.Text = "";
+            textBoxPublicRevue.Text = "";
+            textBoxRayonRevue.Text = "";
+            RemplirCommandesRevueListe(null);
+            
+        }
+
+        
+        /// <summary>
+        /// créée un abonnement à une revue
+        /// </summary>
+        /// <returns></returns>
+        private Abonnement CreateCommandeRevue()
+        {
+            string numcommande = GetLastNumCommandes();
+            string numlivre = textBoxNumRevueAdd.Text;
+            double montant = Convert.ToDouble(textBoxMontantRevueAdd.Text);
+            DateTime date = dateTimePickerCommandeRevue.Value;
+            DateTime dateFinAbo = dateTimePickerFinAbo.Value;
+            if (numcommande != "" && numlivre != "" && date != null && dateFinAbo != null && montant != null)
+            {
+                Abonnement commande = new Abonnement(numcommande,date,montant,dateFinAbo,numlivre);
+
+                return commande;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        /// <summary>
+        /// ajoute la commande créée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddCommandeRevue_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxNumRevueAdd.Text) &&
+              !string.IsNullOrEmpty(textBoxMontantRevueAdd.Text) &&
+              dateTimePickerCommandeRevue.Value < dateTimePickerFinAbo.Value)
+
+            {
+                bool revueExsite = false;
+                string numrevue = null;
+                foreach (Revue revue in lesRevues)
+                {
+                    if (textBoxNumRevueAdd.Text == revue.Id)
+                    {
+                        revueExsite = true;
+                        numrevue = revue.Id;
+                        break;
+                    }
+                }
+                if (revueExsite == true)
+                {
+                    Console.WriteLine("clik validé xxxxxxxxxxxxxxxxxxxx");
+                    Abonnement commande = CreateCommandeRevue();
+
+                    controller.AddCommandeRevue(commande);
+                    
+                    textBoxNumRevue.Text = numrevue;
+                    buttonRechercheRevue_Click(buttonRechercheRevue, new EventArgs());
+                }
+                else
+                {
+                    MessageBox.Show("Revue non exsitante.");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez remplir toutes les informations sur la commande.");
+
+            }
+        }
+
+        /// <summary>
+        /// supprime la commande séléctionnée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDeleteCommandeRevue_Click(object sender, EventArgs e)
+        {
+
+            foreach (Abonnement commande in lesCommandesRevues)
+            {
+                Console.WriteLine("seleted commande id is " + selectedCommandeDocument + " and this command id is " + commande.Id);
+                if (commande.Id == selectedCommandeDocument)
+                {
+                    bool canDelete = ExemplaireCheck(commande);
+
+                    if (canDelete)
+                    {
+                        Console.WriteLine("Delete commande numùber " + commande.Id);
+
+                        controller.DeleteCommandeRevue(commande);
+                        lesCommandesRevues.Remove(commande);
+                        bindingSourceCommandesRevue.DataSource = lesCommandesRevues;
+                        bindingSourceCommandesRevue.ResetBindings(false);
+
+                        dataGridViewRevue.DataSource = bindingSourceCommandesRevue;
+                        selectedCommandeDocument = null;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Impossible de supprimer " + commande.Id);
+                        MessageBox.Show("Impossible de supprimer un abonnement avec des exemplaires");
+                    }
+
+
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// vérifie les parution sur une periode d'abonnement
+        /// </summary>
+        /// <param name="dateCommande"></param>
+        /// <param name="dateFinAbonnement"></param>
+        /// <param name="dateParution"></param>
+        /// <returns></returns>
+        public bool ParutionDansAbonnement(DateTime dateCommande, DateTime dateFinAbonnement, DateTime dateParution)
+        {
+            return (DateTime.Compare(dateCommande, dateParution) < 0 && DateTime.Compare(dateParution, dateFinAbonnement) < 0);
+        }
+        /// <summary>
+        /// vérifie si l'abonnement est en lien avec des exemplaires dans la bdd
+        /// </summary>
+        /// <param name="abonnement"></param>
+        /// <returns></returns>
+        private bool ExemplaireCheck(Abonnement abonnement)
+        {
+            List<Exemplaire> lesExemplairesAbonnement = controller.GetExemplairesRevue(abonnement.IdRevue);
+             bool datedeparution = false;
+            foreach (Exemplaire exemplaire in lesExemplairesAbonnement.Where(exemplaires => ParutionDansAbonnement(abonnement.Date, abonnement.DateFinAbonnement, exemplaires.DateAchat)))
+            {
+                datedeparution = true;
+
+            }
+            return !datedeparution;
+        }
+
+        /// <summary>
+        /// vérifie les abonnement qui finissent d'ici 30j
+        /// </summary>
+        /// <returns></returns>
+        public List<Abonnement> abonnementsEnFin()
+        {
+            List<Abonnement> lesAbos = controller.GetAllCommandesRevue();
+
+            // Filtrer les abonnements dont la date de fin est à moins de 30 jours
+            List<Abonnement> abonnementsProchesDeFin = lesAbos.Where(abonnement =>
+            abonnement.DateFinAbonnement <= DateTime.Now.AddDays(30) && abonnement.DateFinAbonnement >= DateTime.Now).ToList();
+            return abonnementsProchesDeFin;
+        }
+        /// <summary>
+        /// Ouvre une pop up avertissement 
+        /// </summary>
+        public void DisplayFinAbo()
+        {
+            List<Abonnement> lesAbosEnFin = abonnementsEnFin();
+            List<Abonnement> lesAbosEnFinTri = lesAbosEnFin.OrderBy(a => a.DateFinAbonnement).ToList();
+            List<(string Titre, DateTime DateFinAbonnement)> titresEtDates = new List<(string, DateTime)>();
+
+            foreach (Abonnement abonnement in lesAbosEnFinTri)
+            {
+                foreach (Revue revue in lesRevues)
+                {
+                    if (revue.Id == abonnement.IdRevue)
+                    {
+                        titresEtDates.Add((revue.Titre, abonnement.DateFinAbonnement));
+                    }
+                }
+            }
+
+            StringBuilder message = new StringBuilder();
+            message.AppendLine("Les abonnements suivants arrivent à échéance :");
+            foreach (var (Titre, DateFinAbonnement) in titresEtDates)
+            {
+                message.AppendLine($"{Titre} - Fin le {DateFinAbonnement:dd/MM/yyyy}");
+            }
+
+            // Afficher le message dans une MessageBox
+            MessageBox.Show(message.ToString(), "Alerte Abonnements en Fin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Seul des chiffres sont utilisables sur ce champ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNumRevue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+        /// <summary>
+        /// Seul des chiffres sont utilisables sur ce champ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNumRevueAdd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+        /// <summary>
+        /// Seul des chiffres sont utilisables sur ce champ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxMontantRevueAdd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Autoriser seulement les chiffres, la touche Backspace et la virgule (pour les nombres décimaux)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != ',')
+            {
+                e.Handled = true; // Rejeter le caractère
+            }
+
+            // Pour autoriser un seul point décimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true; // Rejeter le caractère si un point décimal est déjà présent
+            }
+        }
+        /// <summary>
+        /// Seul des chiffres sont utilisables sur ce champ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridViewRevue_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string titreColonne = dataGridViewRevue.Columns[e.ColumnIndex].HeaderText;
+            List<Abonnement> sortedList = new List<Abonnement>();
+            switch (titreColonne)
+            {
+                case "Id":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesRevues.OrderBy(o => o.Id).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesRevues.OrderByDescending(o => o.Id).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "Date de commande":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesRevues.OrderBy(o => o.Date).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesRevues.OrderByDescending(o => o.Date).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "Montant":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesRevues.OrderBy(o => o.Montant).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesRevues.OrderByDescending(o => o.Montant).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "Date de fin d'abonnement":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesRevues.OrderBy(o => o.DateFinAbonnement).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesRevues.OrderByDescending(o => o.DateFinAbonnement).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+               
+
+            }
+
+            RemplirCommandesRevueListe(sortedList);
+        }
+
         #endregion
     }
 }
+    
+
+
+
+

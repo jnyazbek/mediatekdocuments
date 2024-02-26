@@ -82,19 +82,125 @@ namespace MediaTekDocuments.controller
         /// </summary>
         /// <param name="idDocuement">id de la revue concernée</param>
         /// <returns>Liste d'objets Exemplaire</returns>
-        public List<Exemplaire> GetExemplairesRevue(string idDocuement)
+        public List<Exemplaire> GetExemplairesRevue(string idDocument)
         {
-            return access.GetExemplairesRevue(idDocuement);
+            return access.GetExemplairesRevue(idDocument);
+        }
+        /// <summary>
+        /// récupère les commandes d'un document
+        /// </summary>
+        /// <param name="idDocument"></param>
+        /// <returns></returns>
+       public List<CommandeDocument> GetCommandesDocuments(string idDocument)
+        {
+            return access.GetCommandesDocument(idDocument);
+        }
+        /// <summary>
+        /// récupère les commandes de dvd
+        /// </summary>
+        /// <param name="idDocument"></param>
+        /// <returns></returns>
+        public List<CommandeDocument> GetCommandesDVD(string idDocument)
+        {
+            return access.GetCommandesDVD(idDocument);
+        }
+        /// <summary>
+        /// récupère les commandes de revues
+        /// </summary>
+        /// <param name="idDocument"></param>
+        /// <returns></returns>
+        public List<Abonnement> GetCommandesRevue(string idDocument)
+        {
+            return access.GetCommandesRevue(idDocument);
+        }
+        /// <summary>
+        /// récupère les suivis
+        /// </summary>
+        /// <returns></returns>
+        public List<Suivi> GetAllSuivi()
+        {
+            return access.GetAllSuivis();
+        }
+        /// <summary>
+        /// récupère les commandes
+        /// </summary>
+        /// <returns></returns>
+        public List<Commande> GetAllCommandes()
+        {
+            return access.GetAllCommandes();
+        }
+        /// <summary>
+        /// récupère les commandes document
+        /// </summary>
+        /// <returns></returns>
+        public List<CommandeDocument> GetAllCommandesDocument()
+        {
+            return access.GetAllCommandesDocument();
         }
 
         /// <summary>
-        /// Crée un exemplaire d'une revue dans la bdd
+        /// récupère les commandes de revue
         /// </summary>
-        /// <param name="exemplaire">L'objet Exemplaire concerné</param>
-        /// <returns>True si la création a pu se faire</returns>
-        public bool CreerExemplaire(Exemplaire exemplaire)
+        /// <returns></returns>
+        public List<Abonnement> GetAllCommandesRevue()
         {
-            return access.CreerExemplaire(exemplaire);
+            return access.GetAllCommandesRevue();
+        }
+
+        /// <summary>
+        /// ajoute une commande de document
+        /// </summary>
+        /// <param name="commande"></param>
+        /// <returns></returns>
+        public bool AddCommandeDocument(CommandeDocument commande)
+        {
+            return access.AddCommandeDocument(commande);
+        }
+        /// <summary>
+        /// ajoute une commande de revue
+        /// </summary>
+        /// <param name="commande"></param>
+        /// <returns></returns>
+        public bool AddCommandeRevue(Abonnement commande)
+        {
+            return access.AddCommandeRevue(commande);
+        }
+        /// <summary>
+        /// ajoute un suivi
+        /// </summary>
+        /// <param name="suivi"></param>
+        /// <returns></returns>
+        public bool AddSuivi(Suivi suivi) 
+        {
+            return access.AddSuivi(suivi);
+        }
+        /// <summary>
+        /// change l'étape de suivi
+        /// </summary>
+        /// <param name="numSuivi"></param>
+        /// <param name="libelle"></param>
+        /// <returns></returns>
+        public bool ChangeSuivi(string numSuivi, string libelle)
+        {
+            return access.ChangeSuivi(numSuivi, libelle);
+        }
+        /// <summary>
+        ///supprime une commande de document
+        /// </summary>
+        /// <param name="commandeDocument"></param>
+        /// <returns></returns>
+        public bool DeleteCommandeDocument(CommandeDocument commandeDocument)
+        {
+            return access.DeleteCommandeDocument(commandeDocument);
+        }
+        /// <summary>
+        /// supprime une commande de revue
+        /// </summary>
+        /// <param name="commande"></param>
+        /// <returns></returns>
+        public bool DeleteCommandeRevue(Abonnement commande)
+        {
+            return access.DeleteCommandeRevue(commande);
         }
     }
 }
