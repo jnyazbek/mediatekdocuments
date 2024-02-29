@@ -14,7 +14,21 @@ namespace MediaTekDocuments
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMediatek());
+            // First, show the login form
+            FormAuth loginForm = new FormAuth();
+            DialogResult result = loginForm.ShowDialog();
+
+            // Check the result
+            if (result == DialogResult.OK)
+            {
+                Console.WriteLine(" main id is " + loginForm.ServiceId);
+                // If login was successful, use the ServiceId from FormAuth
+                Application.Run(new FrmMediatek(loginForm.ServiceId));
+            }
+            else
+            {
+                Application.Exit(); // Exit the application if login was not successful or was canceled
+            }
         }
     }
 }

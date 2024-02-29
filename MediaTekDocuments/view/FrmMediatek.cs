@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using Newtonsoft.Json.Bson;
 using System.Diagnostics;
 using System.Text;
+using System.Net;
 
 namespace MediaTekDocuments.view
 
@@ -25,16 +26,18 @@ namespace MediaTekDocuments.view
         private readonly BindingSource bdgGenres = new BindingSource();
         private readonly BindingSource bdgPublics = new BindingSource();
         private readonly BindingSource bdgRayons = new BindingSource();
-
+        private int service;
         /// <summary>
         /// Constructeur : création du contrôleur lié à ce formulaire
         /// </summary>
-        internal FrmMediatek()
+        internal FrmMediatek(int service)
         {
             InitializeComponent();
             this.controller = new FrmMediatekController();
+            this.service = service;
+            AuthorizationCheck();
             RemplirComboBoxSuivi();
-
+           
         }
 
         /// <summary>
@@ -2635,6 +2638,34 @@ namespace MediaTekDocuments.view
         }
 
         #endregion
+
+        
+
+       public void  AuthorizationCheck()
+       {
+            switch (service)
+            {
+                case 1:
+
+                    break;
+                case 2:
+                    foreach(TabPage tab in frmOnglets.TabPages)
+                    {
+                        Console.WriteLine("tab found name is " + tab.Name);
+
+                    }
+                    frmOnglets.TabPages.Remove(tabPage1);
+                    frmOnglets.TabPages.Remove(tabCommandeDVD);
+                    frmOnglets.TabPages.Remove(tabCommandesRevue);
+                    groupBox7.Enabled = false;
+                    break; 
+                case 3:
+                    MessageBox.Show("Vous n'avez aucune autorisation");
+                    
+                    Environment.Exit(0);
+                    break;
+            }
+       }
     }
 }
     

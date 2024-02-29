@@ -122,6 +122,13 @@
     <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controller\FormAuthController.cs" />
+    <Compile Include="FormAuth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAuth.Designer.cs">
+      <DependentUpon>FormAuth.cs</DependentUpon>
+    </Compile>
     <Compile Include="manager\ApiRest.cs" />
     <Compile Include="controller\FrmMediatekController.cs" />
     <Compile Include="dal\Access.cs" />
@@ -129,7 +136,9 @@
     <Compile Include="model\Commande.cs" />
     <Compile Include="model\CommandeDocument.cs" />
     <Compile Include="model\DateTest.cs" />
+    <Compile Include="model\Service.cs" />
     <Compile Include="model\Suivi.cs" />
+    <Compile Include="model\Utilisateur.cs" />
     <Compile Include="Utils\CustomBooleanJsonConverter.cs" />
     <Compile Include="Utils\CustomDateTimeConverter.cs" />
     <Compile Include="view\FrmMediatek.cs">
@@ -151,6 +160,9 @@
     <Compile Include="model\Revue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAuth.resx">
+      <DependentUpon>FormAuth.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
