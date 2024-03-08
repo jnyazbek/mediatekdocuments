@@ -6,7 +6,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
+using MySql.Data.MySqlClient;
 using MediaTekDocuments.Utils;
+using Serilog;
+using Serilog.Formatting.Compact;
+using Serilog.Formatting.Json;
+
+
+
 
 
 namespace MediaTekDocuments.dal
@@ -20,6 +27,10 @@ namespace MediaTekDocuments.dal
         /// adresse de l'API
         /// </summary>
         private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
+        /// <summary>
+        /// vers app.config
+        /// </summary>
+        private static readonly string connectionName = "MediaTekDocuments.Properties.Settings.mediatek86ConnectionString";
         /// <summary>
         /// instance unique de la classe
         /// </summary>
@@ -43,23 +54,51 @@ namespace MediaTekDocuments.dal
         //méthode HTTP pour DROP
         /// </summary>
         private const string DELETE = "DELETE";
+       
+
+
         /// <summary>
-        /// Méthode privée pour créer un singleton
-        /// initialise l'accès à l'API
+        /// Récupération de la chaîne de connexion
         /// </summary>
+        /// <param name="name">nom de la chaîne de connexion</param>
+        /// <returns></returns>
+        static string GetConnectionStringByName(string name)
+        {
+            string value = null;
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[name];
+            if (settings != null)
+                value = settings.ConnectionString;
+            return value;
+        }
+
+
+
         private Access()
         {
             String authenticationString;
             try
             {
-                authenticationString = "admin:adminpwd";
+                // Récupération de la chaîne de connexion à partir du nom
+                 authenticationString = GetConnectionStringByName(connectionName);
+                
+
+                // Configuration du logging avec Serilog
+                Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Information()
+                    .WriteTo.Console()
+                    .WriteTo.File(new JsonFormatter(), "logs/log.txt", rollingInterval: RollingInterval.Day)
+                    .CreateLogger();
+
+                // Initialisation de l'API avec la chaîne d'authentification
                 api = ApiRest.GetInstance(uriApi, authenticationString);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                // Log de l'erreur fatale et arrêt de l'application
+                Log.Fatal("Access.Access catch connectionString={0} erreur={1}", connectionName, e.Message);
                 Environment.Exit(0);
             }
+
         }
 
         /// <summary>
