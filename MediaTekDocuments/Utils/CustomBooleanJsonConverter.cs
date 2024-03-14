@@ -9,9 +9,7 @@ namespace MediaTekDocuments.Utils
 {
 
     /// <summary>
-    /// Modification du convertisseur Json pour prendre en compte les booléens
-    /// classe trouvée sur le site :
-    /// https://www.thecodebuzz.com/newtonsoft-jsonreaderexception-could-not-convert-string-to-boolean/
+    /// Modification du convertisseur Json pour prendre en compte les booléen
     /// </summary>
     public sealed class CustomBooleanJsonConverter : JsonConverter<bool>
     {

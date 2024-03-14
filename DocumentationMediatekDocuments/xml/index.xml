@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.10.0" xml:lang="en-US">
+  <compound refid="class_media_tek_documents_1_1_feature1_feature" kind="class"><name>MediaTekDocuments::Feature1Feature</name>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1a4cbb8c2d6f13bcdc8844424be0e5e87a" kind="variable"><name>testRunner</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1a479ba99e8fde5cc40437982fc4ff0608" kind="variable"><name>featureTags</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1a7d280c0c74b96acd9b67cf888dd19e59" kind="variable"><name>_testOutputHelper</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1a295bfdac669c393a7261ef91fc3df844" kind="function"><name>Feature1Feature</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1ac9f416fe8c8ba64e4507cbdc37157cd5" kind="function"><name>TestInitialize</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1ab5057e98b4af28b8ab2e83b914d55fdd" kind="function"><name>TestTearDown</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1adf70c846521064243f1d2f98f34212cb" kind="function"><name>ScenarioInitialize</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1aa2ffb62423e01fac794ce47c8e3b6961" kind="function"><name>ScenarioStart</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1a1914560291779086198b05693034c641" kind="function"><name>ScenarioCleanup</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1a787c2eabb08a74dcef3659e165a61554" kind="function"><name>ScenarioName</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1aae766c5f52ccc0a248617e9cdc77eaea" kind="function"><name>FeatureSetup</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1a745d3565d8625d473c9c18c4cf66461a" kind="function"><name>FeatureTearDown</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1a4697bf2181a8d233d2b601276e1c4bbc" kind="function"><name>Dispose</name></member>
+  </compound>
+  <compound refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data" kind="class"><name>MediaTekDocuments::Feature1Feature::FixtureData</name>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data_1aa5a3dcae9829a92a04233b23ba020646" kind="function"><name>FixtureData</name></member>
+    <member refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data_1acc032a86716300436807ff20b26b1cd4" kind="function"><name>Dispose</name></member>
+  </compound>
+  <compound refid="class_media_tek_documents_1_1_form_auth" kind="class"><name>MediaTekDocuments::FormAuth</name>
+    <member refid="class_media_tek_documents_1_1_form_auth_1a171b73d3174f54db23a2d0ca130e11f9" kind="property"><name>ServiceId</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1a2fd6dc649dbb006e1d9f71534d00dd19" kind="variable"><name>controller</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1accd4bcb2327b373e85d806fe0bb983dd" kind="variable"><name>components</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1aaf9aa565571f71696e878dd0f43b7534" kind="variable"><name>textBoxMdp</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1ae5693c4e5eb4b4b0db672ba88d166ba7" kind="variable"><name>textBoxId</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1a26face7607bac953fc0fceb337b66dfb" kind="variable"><name>labelMdp</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1a45086d1b0bf21b61ebf84961faa22dba" kind="variable"><name>labelId</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1ad34ff2e3ad57365aa80fbfb5eff143c7" kind="variable"><name>buttonConnexion</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1a82555a1e2580dfaef40818f40eca9d66" kind="function"><name>FormAuth</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1a0238a880290d844527c9cd74a0c49082" kind="function"><name>buttonConnexion_Click</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1ad20e5c6abcb9e8af0eb105265394ef9b" kind="function"><name>InitializeComponent</name></member>
+    <member refid="class_media_tek_documents_1_1_form_auth_1a487b47d46d7d873ac93ba687b80191c3" kind="function"><name>Dispose</name></member>
+  </compound>
+  <compound refid="class_media_tek_documents_1_1_program" kind="class"><name>MediaTekDocuments::Program</name>
+    <member refid="class_media_tek_documents_1_1_program_1a001dfaa5faeba5bf9d10ce45e6ad65cc" kind="function"><name>Main</name></member>
+  </compound>
+  <compound refid="namespace_media_tek_documents" kind="namespace"><name>MediaTekDocuments</name>
+  </compound>
+  <compound refid="namespace_media_tek_documents_1_1controller" kind="namespace"><name>MediaTekDocuments::controller</name>
+  </compound>
+  <compound refid="namespace_media_tek_documents_1_1model" kind="namespace"><name>MediaTekDocuments::model</name>
+  </compound>
+  <compound refid="namespace_media_tek_documents_1_1view" kind="namespace"><name>MediaTekDocuments::view</name>
+  </compound>
+  <compound refid="namespace_system" kind="namespace"><name>System</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_generic" kind="namespace"><name>System::Collections::Generic</name>
+  </compound>
+  <compound refid="namespace_system_1_1_component_model" kind="namespace"><name>System::ComponentModel</name>
+  </compound>
+  <compound refid="namespace_system_1_1_data" kind="namespace"><name>System::Data</name>
+  </compound>
+  <compound refid="namespace_system_1_1_drawing" kind="namespace"><name>System::Drawing</name>
+  </compound>
+  <compound refid="namespace_system_1_1_linq" kind="namespace"><name>System::Linq</name>
+  </compound>
+  <compound refid="namespace_system_1_1_text" kind="namespace"><name>System::Text</name>
+  </compound>
+  <compound refid="namespace_system_1_1_threading_1_1_tasks" kind="namespace"><name>System::Threading::Tasks</name>
+  </compound>
+  <compound refid="namespace_system_1_1_windows_1_1_forms" kind="namespace"><name>System::Windows::Forms</name>
+  </compound>
+  <compound refid="namespace_tech_talk_1_1_spec_flow" kind="namespace"><name>TechTalk::SpecFlow</name>
+  </compound>
+  <compound refid="namespace_xunit" kind="namespace"><name>Xunit</name>
+  </compound>
+  <compound refid="_feature1_8feature_8cs" kind="file"><name>Feature1.feature.cs</name>
+  </compound>
+  <compound refid="_form_auth_8cs" kind="file"><name>FormAuth.cs</name>
+  </compound>
+  <compound refid="_form_auth_8_designer_8cs" kind="file"><name>FormAuth.Designer.cs</name>
+  </compound>
+  <compound refid="_program_8cs" kind="file"><name>Program.cs</name>
+  </compound>
+</doxygenindex>

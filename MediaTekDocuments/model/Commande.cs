@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MediaTekDocuments.model
 {
+    /// <summary>
+    /// Classe metier définissant les commandes
+    /// </summary>
     public class Commande
     {
         /// <summary>

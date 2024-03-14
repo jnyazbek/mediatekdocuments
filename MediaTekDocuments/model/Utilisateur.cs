@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MediaTekDocuments.model
-{
+{/// <summary>
+/// Classe métier permettant d'identifier les different utilisateurs de l'application
+/// </summary>
     public class Utilisateur
     {
         public int Id { get; set; }

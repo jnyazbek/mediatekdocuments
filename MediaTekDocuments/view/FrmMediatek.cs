@@ -2640,7 +2640,9 @@ namespace MediaTekDocuments.view
         #endregion
 
         
-
+       /// <summary>
+       /// vérifie les autorisations de l'utilisateur et adapte les onglets disponibles
+       /// </summary>
        public void  AuthorizationCheck()
        {
             switch (service)

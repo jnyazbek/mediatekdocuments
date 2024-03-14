@@ -60,7 +60,13 @@ namespace MediaTekDocuments.manager
             return instance;
         }
 
-       
+       /// <summary>
+       /// envoie la requette et récupère la réponse de l'api
+       /// </summary>
+       /// <param name="methode"></param>
+       /// <param name="url"></param>
+       /// <param name="jsonBody"></param>
+       /// <returns></returns>
 
         public JObject RecupDistant(string methode, string url, string jsonBody = null)
         {

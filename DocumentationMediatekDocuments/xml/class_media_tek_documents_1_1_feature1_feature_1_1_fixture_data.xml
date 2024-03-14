@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data" kind="class" language="C#" prot="public">
+    <compoundname>MediaTekDocuments::Feature1Feature::FixtureData</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">System.IDisposable</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data_1aa5a3dcae9829a92a04233b23ba020646" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MediaTekDocuments.Feature1Feature.FixtureData.FixtureData</definition>
+        <argsstring>()</argsstring>
+        <name>FixtureData</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.FixtureData.FixtureData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="121" column="20" bodyfile="Feature1.feature.cs" bodystart="121" bodyend="124"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data_1acc032a86716300436807ff20b26b1cd4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void System.IDisposable.</type>
+        <definition>void System.IDisposable. MediaTekDocuments.Feature1Feature.FixtureData.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.FixtureData.Dispose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="126" column="35" bodyfile="Feature1.feature.cs" bodystart="126" bodyend="129"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>MediaTekDocuments.Feature1Feature.FixtureData</label>
+        <link refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>System::IDisposable</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>MediaTekDocuments.Feature1Feature.FixtureData</label>
+        <link refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>System::IDisposable</label>
+      </node>
+    </collaborationgraph>
+    <location file="Feature1.feature.cs" line="118" column="15" bodyfile="Feature1.feature.cs" bodystart="119" bodyend="130"/>
+    <listofallmembers>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data_1acc032a86716300436807ff20b26b1cd4" prot="private" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature::FixtureData</scope><name>Dispose</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data_1aa5a3dcae9829a92a04233b23ba020646" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature::FixtureData</scope><name>FixtureData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -551,15 +551,22 @@ namespace MediaTekDocuments.dal
 
         }
 
+        /// <summary>
+        /// récupère un utilisateur grâce à son id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<Utilisateur> GetUtilisateur(string id)
         {
             Console.WriteLine("the id user passed in Access.getutilisateur is " + id);
-            //String jsonIdDocument = convertToJson("id", id);
             List<Utilisateur> lesUtilisateurs = TraitementRecup<Utilisateur>(GET, uriApi + "utilisateur/" + id);
             Console.WriteLine("GetCommandesRevue utilisé, the request is " + uriApi + "utilisateur/" + id);
             return lesUtilisateurs;
         }
-
+        /// <summary>
+        /// récupère tout les utilisateurs
+        /// </summary>
+        /// <returns></returns>
         public List<Utilisateur> GetAllUtilisateurs()
         {
             List<Utilisateur> lesUtilisateurs = TraitementRecup<Utilisateur>(GET, "utilisateur");

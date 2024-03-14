@@ -1,0 +1,75 @@
+\doxysection{Documentation\+Mediatek\+Documents/\+Nouveau dossier/\+Help/\+Search\+Help.inc.\+php File Reference}
+\hypertarget{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php}{}\label{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php}\index{DocumentationMediatekDocuments/Nouveau dossier/Help/SearchHelp.inc.php@{DocumentationMediatekDocuments/Nouveau dossier/Help/SearchHelp.inc.php}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_ranking}{Ranking}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_a37c59016381f024cd47abbb37b345e93}{Parse\+Keywords}} (\$keywords)
+\begin{DoxyCompactList}\small\item\em Split the search text up into keywords. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_aa7c3bf2433d4f3071c1b39861ea9865a}{Search}} (\$keywords, \$file\+Info, \$word\+Dictionary, \$sort\+By\+Title)
+\begin{DoxyCompactList}\small\item\em Search for the specified keywords and return the results as a block of HTML. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_a0674a89b936f3a8445bba9c27bb92555}{cmprank}} (\$x, \$y)
+\item 
+\mbox{\hyperlink{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_ac326412181f28b6277ad71ce3e1d17d6}{cmprankbytitle}} (\$x, \$y)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_a0674a89b936f3a8445bba9c27bb92555}\label{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_a0674a89b936f3a8445bba9c27bb92555} 
+\index{SearchHelp.inc.php@{SearchHelp.inc.php}!cmprank@{cmprank}}
+\index{cmprank@{cmprank}!SearchHelp.inc.php@{SearchHelp.inc.php}}
+\doxysubsubsection{\texorpdfstring{cmprank()}{cmprank()}}
+{\footnotesize\ttfamily cmprank (\begin{DoxyParamCaption}\item[{}]{\$x,  }\item[{}]{\$y }\end{DoxyParamCaption})}
+
+\Hypertarget{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_ac326412181f28b6277ad71ce3e1d17d6}\label{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_ac326412181f28b6277ad71ce3e1d17d6} 
+\index{SearchHelp.inc.php@{SearchHelp.inc.php}!cmprankbytitle@{cmprankbytitle}}
+\index{cmprankbytitle@{cmprankbytitle}!SearchHelp.inc.php@{SearchHelp.inc.php}}
+\doxysubsubsection{\texorpdfstring{cmprankbytitle()}{cmprankbytitle()}}
+{\footnotesize\ttfamily cmprankbytitle (\begin{DoxyParamCaption}\item[{}]{\$x,  }\item[{}]{\$y }\end{DoxyParamCaption})}
+
+\Hypertarget{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_a37c59016381f024cd47abbb37b345e93}\label{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_a37c59016381f024cd47abbb37b345e93} 
+\index{SearchHelp.inc.php@{SearchHelp.inc.php}!ParseKeywords@{ParseKeywords}}
+\index{ParseKeywords@{ParseKeywords}!SearchHelp.inc.php@{SearchHelp.inc.php}}
+\doxysubsubsection{\texorpdfstring{ParseKeywords()}{ParseKeywords()}}
+{\footnotesize\ttfamily Parse\+Keywords (\begin{DoxyParamCaption}\item[{}]{\$keywords }\end{DoxyParamCaption})}
+
+
+
+Split the search text up into keywords. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keywords} & The keywords to parse\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list containing the words for which to search
+\end{DoxyReturn}
+\Hypertarget{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_aa7c3bf2433d4f3071c1b39861ea9865a}\label{_documentation_mediatek_documents_2_nouveau_01dossier_2_help_2_search_help_8inc_8php_aa7c3bf2433d4f3071c1b39861ea9865a} 
+\index{SearchHelp.inc.php@{SearchHelp.inc.php}!Search@{Search}}
+\index{Search@{Search}!SearchHelp.inc.php@{SearchHelp.inc.php}}
+\doxysubsubsection{\texorpdfstring{Search()}{Search()}}
+{\footnotesize\ttfamily Search (\begin{DoxyParamCaption}\item[{}]{\$keywords,  }\item[{}]{\$file\+Info,  }\item[{}]{\$word\+Dictionary,  }\item[{}]{\$sort\+By\+Title }\end{DoxyParamCaption})}
+
+
+
+Search for the specified keywords and return the results as a block of HTML. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keywords} & The keywords for which to search\\
+\hline
+{\em file\+Info} & The file list\\
+\hline
+{\em word\+Dictionary} & The dictionary used to find the words\\
+\hline
+{\em sort\+By\+Title} & True to sort by title, false to sort by ranking\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A block of HTML representing the search results.
+\end{DoxyReturn}

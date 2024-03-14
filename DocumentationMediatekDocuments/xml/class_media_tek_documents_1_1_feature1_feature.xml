@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="class_media_tek_documents_1_1_feature1_feature" kind="class" language="C#" prot="public">
+    <compoundname>MediaTekDocuments::Feature1Feature</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">Xunit::IClassFixture&lt; Feature1Feature.FixtureData &gt;</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">System.IDisposable</basecompoundref>
+    <innerclass refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data" prot="public">MediaTekDocuments::Feature1Feature::FixtureData</innerclass>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_feature1_feature_1a4cbb8c2d6f13bcdc8844424be0e5e87a" prot="private" static="yes" mutable="no">
+        <type>TechTalk.SpecFlow.ITestRunner</type>
+        <definition>TechTalk.SpecFlow.ITestRunner MediaTekDocuments.Feature1Feature.testRunner</definition>
+        <argsstring></argsstring>
+        <name>testRunner</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.testRunner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="25" column="52" bodyfile="Feature1.feature.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_feature1_feature_1a479ba99e8fde5cc40437982fc4ff0608" prot="private" static="yes" mutable="no">
+        <type>string[]</type>
+        <definition>string [] MediaTekDocuments.Feature1Feature.featureTags</definition>
+        <argsstring></argsstring>
+        <name>featureTags</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.featureTags</qualifiedname>
+        <initializer>= ((string[])(null))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="27" column="31" bodyfile="Feature1.feature.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_feature1_feature_1a7d280c0c74b96acd9b67cf888dd19e59" prot="private" static="no" mutable="no">
+        <type>Xunit.Abstractions.ITestOutputHelper</type>
+        <definition>Xunit.Abstractions.ITestOutputHelper MediaTekDocuments.Feature1Feature._testOutputHelper</definition>
+        <argsstring></argsstring>
+        <name>_testOutputHelper</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature._testOutputHelper</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="29" column="52" bodyfile="Feature1.feature.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1a295bfdac669c393a7261ef91fc3df844" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MediaTekDocuments.Feature1Feature.Feature1Feature</definition>
+        <argsstring>(Feature1Feature.FixtureData fixtureData, MediaTekDocuments_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)</argsstring>
+        <name>Feature1Feature</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.Feature1Feature</qualifiedname>
+        <param>
+          <type><ref refid="class_media_tek_documents_1_1_feature1_feature_1_1_fixture_data" kindref="compound">Feature1Feature.FixtureData</ref></type>
+          <declname>fixtureData</declname>
+        </param>
+        <param>
+          <type>MediaTekDocuments_XUnitAssemblyFixture</type>
+          <declname>assemblyFixture</declname>
+        </param>
+        <param>
+          <type>Xunit.Abstractions.ITestOutputHelper</type>
+          <declname>testOutputHelper</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="34" column="16" bodyfile="Feature1.feature.cs" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1ac9f416fe8c8ba64e4507cbdc37157cd5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MediaTekDocuments.Feature1Feature.TestInitialize</definition>
+        <argsstring>()</argsstring>
+        <name>TestInitialize</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.TestInitialize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="53" column="21" bodyfile="Feature1.feature.cs" bodystart="53" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1ab5057e98b4af28b8ab2e83b914d55fdd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MediaTekDocuments.Feature1Feature.TestTearDown</definition>
+        <argsstring>()</argsstring>
+        <name>TestTearDown</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.TestTearDown</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="57" column="21" bodyfile="Feature1.feature.cs" bodystart="57" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1adf70c846521064243f1d2f98f34212cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MediaTekDocuments.Feature1Feature.ScenarioInitialize</definition>
+        <argsstring>(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)</argsstring>
+        <name>ScenarioInitialize</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.ScenarioInitialize</qualifiedname>
+        <param>
+          <type>TechTalk.SpecFlow.ScenarioInfo</type>
+          <declname>scenarioInfo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="62" column="21" bodyfile="Feature1.feature.cs" bodystart="62" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1aa2ffb62423e01fac794ce47c8e3b6961" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MediaTekDocuments.Feature1Feature.ScenarioStart</definition>
+        <argsstring>()</argsstring>
+        <name>ScenarioStart</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.ScenarioStart</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="68" column="21" bodyfile="Feature1.feature.cs" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1a1914560291779086198b05693034c641" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MediaTekDocuments.Feature1Feature.ScenarioCleanup</definition>
+        <argsstring>()</argsstring>
+        <name>ScenarioCleanup</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.ScenarioCleanup</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="73" column="21" bodyfile="Feature1.feature.cs" bodystart="73" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1a787c2eabb08a74dcef3659e165a61554" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MediaTekDocuments.Feature1Feature.ScenarioName</definition>
+        <argsstring>()</argsstring>
+        <name>ScenarioName</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.ScenarioName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="87" column="21" bodyfile="Feature1.feature.cs" bodystart="87" bodyend="114"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1aae766c5f52ccc0a248617e9cdc77eaea" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MediaTekDocuments.Feature1Feature.FeatureSetup</definition>
+        <argsstring>()</argsstring>
+        <name>FeatureSetup</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.FeatureSetup</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="40" column="28" bodyfile="Feature1.feature.cs" bodystart="40" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1a745d3565d8625d473c9c18c4cf66461a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void MediaTekDocuments.Feature1Feature.FeatureTearDown</definition>
+        <argsstring>()</argsstring>
+        <name>FeatureTearDown</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.FeatureTearDown</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="47" column="28" bodyfile="Feature1.feature.cs" bodystart="47" bodyend="51"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_media_tek_documents_1_1_feature1_feature_1a4697bf2181a8d233d2b601276e1c4bbc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void System.IDisposable.</type>
+        <definition>void System.IDisposable. MediaTekDocuments.Feature1Feature.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>MediaTekDocuments.Feature1Feature.Dispose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Feature1.feature.cs" line="78" column="31" bodyfile="Feature1.feature.cs" bodystart="78" bodyend="81"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>MediaTekDocuments.Feature1Feature</label>
+        <link refid="class_media_tek_documents_1_1_feature1_feature"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>System::IDisposable</label>
+      </node>
+      <node id="3">
+        <label>Xunit::IClassFixture&lt; Feature1Feature.FixtureData &gt;</label>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>MediaTekDocuments.Feature1Feature</label>
+        <link refid="class_media_tek_documents_1_1_feature1_feature"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>System::IDisposable</label>
+      </node>
+      <node id="3">
+        <label>Xunit::IClassFixture&lt; Feature1Feature.FixtureData &gt;</label>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="Feature1.feature.cs" line="22" column="19" bodyfile="Feature1.feature.cs" bodystart="23" bodyend="131"/>
+    <listofallmembers>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1a7d280c0c74b96acd9b67cf888dd19e59" prot="private" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>_testOutputHelper</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1a4697bf2181a8d233d2b601276e1c4bbc" prot="private" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>Dispose</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1a295bfdac669c393a7261ef91fc3df844" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>Feature1Feature</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1aae766c5f52ccc0a248617e9cdc77eaea" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>FeatureSetup</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1a479ba99e8fde5cc40437982fc4ff0608" prot="private" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>featureTags</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1a745d3565d8625d473c9c18c4cf66461a" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>FeatureTearDown</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1a1914560291779086198b05693034c641" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>ScenarioCleanup</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1adf70c846521064243f1d2f98f34212cb" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>ScenarioInitialize</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1a787c2eabb08a74dcef3659e165a61554" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>ScenarioName</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1aa2ffb62423e01fac794ce47c8e3b6961" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>ScenarioStart</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1ac9f416fe8c8ba64e4507cbdc37157cd5" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>TestInitialize</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1a4cbb8c2d6f13bcdc8844424be0e5e87a" prot="private" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>testRunner</name></member>
+      <member refid="class_media_tek_documents_1_1_feature1_feature_1ab5057e98b4af28b8ab2e83b914d55fdd" prot="public" virt="non-virtual"><scope>MediaTekDocuments::Feature1Feature</scope><name>TestTearDown</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

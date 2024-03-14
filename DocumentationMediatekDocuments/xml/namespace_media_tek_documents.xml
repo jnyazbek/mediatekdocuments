@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespace_media_tek_documents" kind="namespace" language="C#">
+    <compoundname>MediaTekDocuments</compoundname>
+    <innerclass refid="class_media_tek_documents_1_1_feature1_feature" prot="public">MediaTekDocuments::Feature1Feature</innerclass>
+    <innerclass refid="class_media_tek_documents_1_1_form_auth" prot="public">MediaTekDocuments::FormAuth</innerclass>
+    <innerclass refid="class_media_tek_documents_1_1_program" prot="public">MediaTekDocuments::Program</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Feature1.feature.cs" line="13" column="1"/>
+  </compounddef>
+</doxygen>

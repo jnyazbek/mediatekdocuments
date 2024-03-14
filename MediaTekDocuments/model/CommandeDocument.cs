@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MediaTekDocuments.model
 {
+    /// <summary>
+    /// Classe métier heritant de commande : contient des propriété spécifiques aux commandes de livres et dvds
+    /// </summary>
     public class CommandeDocument : Commande
     {
         /// <summary>

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace MediaTekDocuments.controller
 {
+    /// <summary>
+    /// controller du formulaire d'authentification
+    /// </summary>
     class FormAuthController
     {
         /// <summary>

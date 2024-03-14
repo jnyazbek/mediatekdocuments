@@ -1,0 +1,148 @@
+\chapter{Serilog \texorpdfstring{$<$}{<}a href="{}https\+://ci.\+appveyor.\+com/project/serilog/serilog/branch/dev"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://ci.\+appveyor.\+com/api/projects/status/b9rm3l7kduryjgcj/branch/dev?svg=true"{} alt="{}\+Build status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://www.\+nuget.\+org/packages/\+Serilog/"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}http\+://img.\+shields.\+io/nuget/v/\+Serilog.\+svg?style=flat"{} alt="{}\+Nu\+Get Version"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://www.\+nuget.\+org/packages/\+Serilog/"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/nuget/dt/serilog.\+svg"{} alt="{}\+Nu\+Get Downloads"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}http\+://stackoverflow.\+com/questions/tagged/serilog"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/badge/stack\%20overflow-\/serilog-\/orange.\+svg"{} alt="{}\+Stack Overflow"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e}{}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e}\index{Serilog $<$a href="{}https://ci.appveyor.com/project/serilog/serilog/branch/dev"{} $>$$<$img src="{}https://ci.appveyor.com/api/projects/status/b9rm3l7kduryjgcj/branch/dev?svg=true"{} alt="{}Build status"{}/$>$$<$/a$>$ $<$a href="{}https://www.nuget.org/packages/Serilog/"{} $>$$<$img src="{}http://img.shields.io/nuget/v/Serilog.svg?style=flat"{} alt="{}NuGet Version"{}/$>$$<$/a$>$ $<$a href="{}https://www.nuget.org/packages/Serilog/"{} $>$$<$img src="{}https://img.shields.io/nuget/dt/serilog.svg"{} alt="{}NuGet Downloads"{}/$>$$<$/a$>$ $<$a href="{}http://stackoverflow.com/questions/tagged/serilog"{} $>$$<$img src="{}https://img.shields.io/badge/stack\%20overflow-\/serilog-\/orange.svg"{} alt="{}Stack Overflow"{}/$>$$<$/a$>$@{Serilog $<$a href=""https://ci.appveyor.com/project/serilog/serilog/branch/dev"" $>$$<$img src=""https://ci.appveyor.com/api/projects/status/b9rm3l7kduryjgcj/branch/dev?svg=true"" alt=""Build status""/$>$$<$/a$>$ $<$a href=""https://www.nuget.org/packages/Serilog/"" $>$$<$img src=""http://img.shields.io/nuget/v/Serilog.svg?style=flat"" alt=""NuGet Version""/$>$$<$/a$>$ $<$a href=""https://www.nuget.org/packages/Serilog/"" $>$$<$img src=""https://img.shields.io/nuget/dt/serilog.svg"" alt=""NuGet Downloads""/$>$$<$/a$>$ $<$a href=""http://stackoverflow.com/questions/tagged/serilog"" $>$$<$img src=""https://img.shields.io/badge/stack\%20overflow-\/serilog-\/orange.svg"" alt=""Stack Overflow""/$>$$<$/a$>$}}
+\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md151}%
+\Hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md151}%
+ Serilog is a diagnostic logging library for .NET applications. It is easy to set up, has a clean API, and runs on all recent .NET platforms. While it\textquotesingle{}s useful even in the simplest applications, Serilog\textquotesingle{}s support for structured logging shines when instrumenting complex, distributed, and asynchronous applications and systems.
+
+\href{https://serilog.net}{\texttt{ }}
+
+Like many other libraries for .NET, Serilog provides diagnostic logging to \href{https://github.com/serilog/serilog-sinks-file}{\texttt{ files}}, the \href{https://github.com/serilog/serilog-sinks-console}{\texttt{ console}}, and \href{https://github.com/serilog/serilog/wiki/Provided-Sinks}{\texttt{ many other outputs}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using\ }var\ log\ =\ \textcolor{keyword}{new}\ LoggerConfiguration()}
+\DoxyCodeLine{\ \ \ \ .WriteTo.Console()}
+\DoxyCodeLine{\ \ \ \ .WriteTo.File(\textcolor{stringliteral}{"{}log.txt"{}})}
+\DoxyCodeLine{\ \ \ \ .CreateLogger();}
+\DoxyCodeLine{}
+\DoxyCodeLine{log.Information(\textcolor{stringliteral}{"{}Hello,\ Serilog!"{}});}
+
+\end{DoxyCode}
+
+
+Unlike other logging libraries, Serilog is built from the ground up to record {\itshape structured event data}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ position\ =\ \textcolor{keyword}{new}\ \{\ Latitude\ =\ 25,\ Longitude\ =\ 134\ \};}
+\DoxyCodeLine{var\ elapsedMs\ =\ 34;}
+\DoxyCodeLine{}
+\DoxyCodeLine{log.Information(\textcolor{stringliteral}{"{}Processed\ \{@Position\}\ in\ \{Elapsed\}\ ms"{}},\ position,\ elapsedMs);}
+
+\end{DoxyCode}
+
+
+Serilog uses \href{https://messagetemplates.org}{\texttt{ message templates}}, a simple DSL that extends .NET format strings with {\itshape named} as well as positional parameters. Instead of formatting events immediately into text, Serilog captures the values associated with each named parameter.
+
+The example above records two properties, {\ttfamily Position} and {\ttfamily Elapsed}, in the log event. The {\ttfamily @} operator in front of {\ttfamily Position} tells Serilog to {\itshape serialize} the object passed in, rather than convert it using {\ttfamily To\+String()}. Serilog\textquotesingle{}s deep and rich support for structured event data opens up a huge range of diagnostic possibilities not available when using traditional loggers.
+
+Rendered into \href{https://github.com/serilog/serilog-formatting-compact}{\texttt{ JSON format}} for example, these properties appear alongside the timestamp, level, and message like\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}Position"{}:\ \{"{}Latitude"{}:\ 25,\ "{}Longitude"{}:\ 134\},\ "{}Elapsed"{}:\ 34\}}
+
+\end{DoxyCode}
+
+
+Back-\/ends that are capable of recording structured event data make log searches and analysis possible without log parsing or regular expressions.
+
+Supporting structured data doesn\textquotesingle{}t mean giving up text\+: when Serilog writes events to files or the console, the template and properties are rendered into friendly human-\/readable text just like a traditional logging library would produce\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{09:14:22\ [INF]\ Processed\ \{"{}Latitude"{}:\ 25,\ "{}Longitude"{}:\ 134\}\ in\ 34\ ms.}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+{\bfseries{Upgrading from an earlier Serilog version?}} Find \href{https://github.com/serilog/serilog/releases}{\texttt{ release notes here}}. \end{quote}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md152}{}\doxysubsection{\texorpdfstring{Features}{Features}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md152}
+
+\begin{DoxyItemize}
+\item {\bfseries{Community-\/backed and actively developed}}
+\item Format-\/based logging API with familiar \href{https://github.com/serilog/serilog/wiki/Configuration-Basics\#minimum-level}{\texttt{ levels}} like {\ttfamily Debug}, {\ttfamily Information}, {\ttfamily Warning}, {\ttfamily Error}, and so-\/on
+\item Discoverable C\# configuration syntax and optional \href{https://github.com/serilog/serilog-settings-appsettings}{\texttt{ XML}} or \href{https://github.com/serilog/serilog-settings-configuration}{\texttt{ JSON}} configuration support
+\item Efficient when enabled, extremely low overhead when a logging level is switched off
+\item Best-\/in-\/class .NET Core support, including \href{https://github.com/serilog/serilog-aspnetcore}{\texttt{ rich integration with ASP.\+NET Core}}
+\item Support for a \href{https://github.com/serilog/serilog/wiki/Provided-Sinks}{\texttt{ comprehensive range of sinks}}, including files, the console, on-\/premises and cloud-\/based log servers, databases, and message queues
+\item Sophisticated \href{https://github.com/serilog/serilog/wiki/Enrichment}{\texttt{ enrichment}} of log events with contextual information, including scoped ({\ttfamily Log\+Context}) properties, thread and process identifiers, and domain-\/specific correlation ids such as {\ttfamily Http\+Request\+Id}
+\item Zero-\/shared-\/state {\ttfamily Logger} objects, with an optional global static {\ttfamily Log} class
+\item Format-\/agnostic logging pipeline that can emit events in plain text, JSON, in-\/memory {\ttfamily Log\+Event} objects (including \href{https://github.com/serilog/serilog-sinks-observable}{\texttt{ Rx pipelines}}) and other formats
+\end{DoxyItemize}\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md153}{}\doxysubsection{\texorpdfstring{Getting started}{Getting started}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md153}
+Serilog is installed \href{https://nuget.org/packages/serilog}{\texttt{ from Nu\+Get}}. To view log events, one or more sinks need to be installed as well, here we\textquotesingle{}ll use the pretty-\/printing console sink, and a rolling file set\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dotnet\ add\ package\ Serilog}
+\DoxyCodeLine{dotnet\ add\ package\ Serilog.Sinks.Console}
+\DoxyCodeLine{dotnet\ add\ package\ Serilog.Sinks.File}
+
+\end{DoxyCode}
+
+
+The simplest way to set up Serilog is using the static {\ttfamily Log} class. A {\ttfamily Logger\+Configuration} is used to create and assign the default logger, normally in {\itshape Program.\+cs}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using\ }Serilog;}
+\DoxyCodeLine{}
+\DoxyCodeLine{Log.Logger\ =\ \textcolor{keyword}{new}\ LoggerConfiguration()}
+\DoxyCodeLine{\ \ \ \ .WriteTo.Console()}
+\DoxyCodeLine{\ \ \ \ .WriteTo.File(\textcolor{stringliteral}{"{}log.txt"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rollingInterval:\ RollingInterval.Day,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rollOnFileSizeLimit:\ true)}
+\DoxyCodeLine{\ \ \ \ .CreateLogger();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{try}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Your\ program\ here...}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ name\ =\ \textcolor{stringliteral}{"{}Serilog"{}};}
+\DoxyCodeLine{\ \ \ \ Log.Information(\textcolor{stringliteral}{"{}Hello,\ \{Name\}!"{}},\ name);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(\textcolor{stringliteral}{"{}Oops..."{}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{catch}\ (Exception\ ex)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ Log.Error(ex,\ \textcolor{stringliteral}{"{}Unhandled\ exception"{}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{finally}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ await\ Log.CloseAndFlushAsync();\ \textcolor{comment}{//\ ensure\ all\ logs\ written\ before\ app\ exits}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Find more, including a runnable example application, under the \href{https://github.com/serilog/serilog/wiki/Getting-Started}{\texttt{ Getting Started topic}} in the \href{https://github.com/serilog/serilog/wiki/}{\texttt{ documentation}}.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md154}{}\doxysubsection{\texorpdfstring{Getting help}{Getting help}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md154}
+To learn more about Serilog, check out the \href{https://github.com/serilog/serilog/wiki}{\texttt{ documentation}} -\/ you\textquotesingle{}ll find information there on the most common scenarios. If Serilog isn\textquotesingle{}t working the way you expect, you may find the \href{https://github.com/serilog/serilog/wiki/Debugging-and-Diagnostics}{\texttt{ troubleshooting guide}} useful.
+
+Serilog has an active and helpful community who are happy to help point you in the right direction or work through any issues you might encounter. You can get in touch via\+:
+
+
+\begin{DoxyItemize}
+\item \href{http://stackoverflow.com/questions/tagged/serilog}{\texttt{ Stack Overflow}} --- this is the best place to start if you have a question. Many track the {\ttfamily serilog} tag there.
+\item The \href{https://twitter.com/search?q=\%23serilog}{\texttt{ \#serilog tag on Twitter}}
+\item \href{https://www.pluralsight.com/search/?q=serilog}{\texttt{ Serilog-\/related courses on Pluralsight}}
+\end{DoxyItemize}
+
+We welcome reproducible bug reports and detailed feature requests through \href{https://github.com/serilog/serilog/issues}{\texttt{ our Git\+Hub issue tracker}}; note the other resource are much better for quick questions or seeking usage help.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md155}{}\doxysubsection{\texorpdfstring{Contributing}{Contributing}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md155}
+Would you like to help make Serilog even better? We keep a list of issues that are approachable for newcomers under the \href{https://github.com/issues?utf8=\%E2\%9C\%93&q=is\%3Aopen+is\%3Aissue+archived\%3Afalse+user\%3Aserilog+label\%3Aup-for-grabs}{\texttt{ up-\/for-\/grabs}} label (accessible only when logged into Git\+Hub). Before starting work on a pull request, we suggest commenting on, or raising, an issue on the issue tracker so that we can help and coordinate efforts. For more details check out our contributing guide.
+
+When contributing please keep in mind our Code of Conduct.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md156}{}\doxysubsection{\texorpdfstring{Detailed build status}{Detailed build status}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_83_81_81_2_r_e_a_d_m_e_autotoc_md156}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Branch   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ App\+Veyor    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Branch   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ App\+Veyor    }\\\cline{1-2}
+\endhead
+{\ttfamily dev}   &\href{https://ci.appveyor.com/project/serilog/serilog/branch/dev}{\texttt{ }}    \\\cline{1-2}
+{\ttfamily main}   &\href{https://ci.appveyor.com/project/serilog/serilog/branch/master}{\texttt{ }}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\itshape Serilog is copyright \copyright{} Serilog Contributors -\/ Provided under the \href{http://apache.org/licenses/LICENSE-2.0.html}{\texttt{ Apache License, Version 2.\+0}}. Needle and thread logo a derivative of work by \href{http://www.kensets.com/}{\texttt{ Kenneth Appiah}}.} 

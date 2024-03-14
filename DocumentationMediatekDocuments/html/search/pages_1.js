@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['2021_0',['NUnit 3.13.1 - January 31, 2021',['../md_packages_2_n_unit_83_813_81_2_c_h_a_n_g_e_s.html',1,'']]],
+  ['20overflow_20serilog_20orange_20svg_20alt_20stack_20overflow_20a_1',['Serilog &lt;a href=&quot;https://ci.appveyor.com/project/serilog/serilog/branch/dev&quot; &gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/b9rm3l7kduryjgcj/branch/dev?svg=true&quot; alt=&quot;Build status&quot;/&gt;&lt;/a&gt; &lt;a href=&quot;https://www.nuget.org/packages/Serilog/&quot; &gt;&lt;img src=&quot;http://img.shields.io/nuget/v/Serilog.svg?style=flat&quot; alt=&quot;NuGet Version&quot;/&gt;&lt;/a&gt; &lt;a href=&quot;https://www.nuget.org/packages/Serilog/&quot; &gt;&lt;img src=&quot;https://img.shields.io/nuget/dt/serilog.svg&quot; alt=&quot;NuGet Downloads&quot;/&gt;&lt;/a&gt; &lt;a href=&quot;http://stackoverflow.com/questions/tagged/serilog&quot; &gt;&lt;img src=&quot;https://img.shields.io/badge/stack%20overflow-serilog-orange.svg&quot; alt=&quot;Stack Overflow&quot;/&gt;&lt;/a&gt;',['../md_packages_2_serilog_83_81_81_2_r_e_a_d_m_e.html',1,'']]]
+];

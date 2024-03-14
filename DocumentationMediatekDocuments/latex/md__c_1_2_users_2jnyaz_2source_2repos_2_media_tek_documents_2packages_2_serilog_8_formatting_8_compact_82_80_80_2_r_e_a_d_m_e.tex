@@ -1,0 +1,172 @@
+\chapter{Serilog.\+Formatting.\+Compact \texorpdfstring{$<$}{<}a href="{}https\+://ci.\+appveyor.\+com/project/serilog/serilog-\/formatting-\/compact"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://ci.\+appveyor.\+com/api/projects/status/ch5il2airviylofn?svg=true"{} alt="{}\+Build status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://nuget.\+org/packages/\+Serilog.\+Formatting.\+Compact"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/nuget/v/\+Serilog.\+Formatting.\+Compact.\+svg"{} alt="{}\+Nu\+Get"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e}{}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e}\index{Serilog.Formatting.Compact $<$a href="{}https://ci.appveyor.com/project/serilog/serilog-\/formatting-\/compact"{} $>$$<$img src="{}https://ci.appveyor.com/api/projects/status/ch5il2airviylofn?svg=true"{} alt="{}Build status"{}/$>$$<$/a$>$ $<$a href="{}https://nuget.org/packages/Serilog.Formatting.Compact"{} $>$$<$img src="{}https://img.shields.io/nuget/v/Serilog.Formatting.Compact.svg"{} alt="{}NuGet"{}/$>$$<$/a$>$@{Serilog.Formatting.Compact $<$a href=""https://ci.appveyor.com/project/serilog/serilog-\/formatting-\/compact"" $>$$<$img src=""https://ci.appveyor.com/api/projects/status/ch5il2airviylofn?svg=true"" alt=""Build status""/$>$$<$/a$>$ $<$a href=""https://nuget.org/packages/Serilog.Formatting.Compact"" $>$$<$img src=""https://img.shields.io/nuget/v/Serilog.Formatting.Compact.svg"" alt=""NuGet""/$>$$<$/a$>$}}
+\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md157}%
+\Hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md157}%
+ A simple, compact JSON-\/based event format for Serilog. {\ttfamily Compact\+Json\+Formatter} significantly reduces the byte count of small log events when compared with Serilog\textquotesingle{}s default {\ttfamily Json\+Formatter}, while remaining human-\/readable. It achieves this through shorter built-\/in property names, a leaner format, and by excluding redundant information.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md158}{}\doxysubsection{\texorpdfstring{Sample}{Sample}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md158}
+A simple {\ttfamily Hello, \{User\}} event.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}@t"{}:"{}2016-\/06-\/07T03:44:57.8532799Z"{},"{}@mt"{}:"{}Hello,\ \{User\}"{},"{}User"{}:"{}nblumhardt"{}\}}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md159}{}\doxysubsection{\texorpdfstring{Getting started}{Getting started}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md159}
+Install from \href{https://nuget.org/packages/Serilog.Formatting.Compact}{\texttt{ Nu\+Get}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Install-\/Package\ Serilog.Formatting.Compact}
+
+\end{DoxyCode}
+
+
+The formatter is used in conjunction with sinks that accept {\ttfamily IText\+Formatter}. For example, the \href{https://github.com/serilog/serilog-sinks-file}{\texttt{ file}} sink\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Log.Logger\ =\ \textcolor{keyword}{new}\ LoggerConfiguration()}
+\DoxyCodeLine{\ \ .WriteTo.File(\textcolor{keyword}{new}\ CompactJsonFormatter(),\ \textcolor{stringliteral}{"{}./logs/myapp.json"{}})}
+\DoxyCodeLine{\ \ .CreateLogger();}
+
+\end{DoxyCode}
+ \hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md160}{}\doxysubsubsection{\texorpdfstring{XML {\ttfamily \texorpdfstring{$<$}{<}app\+Settings\texorpdfstring{$>$}{>}} configuration}{XML {\ttfamily \texorpdfstring{$<$}{<}app\+Settings\texorpdfstring{$>$}{>}} configuration}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md160}
+To specify the formatter in XML {\ttfamily \texorpdfstring{$<$}{<}app\+Settings\texorpdfstring{$>$}{>}} provide its assembly-\/qualified type name\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<\textcolor{keywordtype}{appSettings}>}
+\DoxyCodeLine{\ \ <\textcolor{keywordtype}{add}\ \textcolor{keyword}{key}=\textcolor{stringliteral}{"{}serilog:using:File"{}}\ \textcolor{keyword}{value}=\textcolor{stringliteral}{"{}Serilog.Sinks.File"{}}\ />}
+\DoxyCodeLine{\ \ <\textcolor{keywordtype}{add}\ \textcolor{keyword}{key}=\textcolor{stringliteral}{"{}serilog:write-\/to:File.path"{}}\ \textcolor{keyword}{value}=\textcolor{stringliteral}{"{}./logs/myapp.json"{}}\ />}
+\DoxyCodeLine{\ \ <\textcolor{keywordtype}{add}\ \textcolor{keyword}{key}=\textcolor{stringliteral}{"{}serilog:write-\/to:File.formatter"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{keyword}{value}=\textcolor{stringliteral}{"{}Serilog.Formatting.Compact.CompactJsonFormatter,\ Serilog.Formatting.Compact"{}}\ />}
+
+\end{DoxyCode}
+ \hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md161}{}\doxysubsubsection{\texorpdfstring{JSON {\ttfamily appsettings.\+json} configuration}{JSON {\ttfamily appsettings.\+json} configuration}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md161}
+To specify formatter in json {\ttfamily appsettings.\+json} provide its assembly-\/qualified type name\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}Serilog"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}WriteTo"{}:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}Name"{}:\ "{}File"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ "{}Args"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ "{}path"{}:\ "{}./logs/myapp.json"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ "{}formatter"{}:\ "{}Serilog.Formatting.Compact.CompactJsonFormatter,\ Serilog.Formatting.Compact"{}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ ]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md162}{}\doxysubsection{\texorpdfstring{Rendered events}{Rendered events}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md162}
+{\ttfamily Compact\+Json\+Formatter} will preserve the message template, properties, and formatting information so that the rendered message can be created at a later point. When the JSON is intended for consumption in an environment without message template rendering, {\ttfamily Rendered\+Compact\+Json\+Formatter} can be used instead.
+
+Instead of the message template, {\ttfamily Rendered\+Compact\+Json\+Formatter} writes the fully-\/rendered message, as well as an {\itshape event id} \href{https://nblumhardt.com/2015/10/assigning-event-types-to-serilog-events/}{\texttt{ generated from the message template}}, into the event\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}@t"{}:"{}2016-\/06-\/07T03:44:57.8532799Z"{},"{}@m"{}:"{}Hello,\ \(\backslash\)"{}nblumhardt\(\backslash\)"{}"{},"{}@i"{}:"{}7a8b9c0d"{},"{}User"{}:"{}nblumhardt"{}\}}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md163}{}\doxysubsection{\texorpdfstring{Format details}{Format details}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md163}
+The format written by the compact formatters is specified generically so that implementations for other logging libraries, including {\itshape Microsoft.\+Extensions.\+Logging}, are possible if desired.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md164}{}\doxyparagraph{\texorpdfstring{Payload}{Payload}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md164}
+Each event is a JSON object with event data at the top level. Any JSON property on the payload object is assumed to be a regular property of the event, apart from the reified properties below.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md165}{}\doxyparagraph{\texorpdfstring{Reified properties}{Reified properties}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md165}
+The format defines a handful of reified properties that have special meaning\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Property   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Required?    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Property   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Required?    }\\\cline{1-4}
+\endhead
+{\ttfamily @t}   &Timestamp   &An ISO 8601 timestamp   &Yes    \\\cline{1-4}
+{\ttfamily @m}   &Message   &A fully-\/rendered message describing the event   &\\\cline{1-4}
+{\ttfamily @mt}   &Message Template   &Alternative to Message; specifies a \href{http://messagetemplates.org}{\texttt{ message template}} over the event\textquotesingle{}s properties that provides for rendering into a textual description of the event   &\\\cline{1-4}
+{\ttfamily @l}   &Level   &An implementation-\/specific level identifier (string or number)   &Absence implies "{}informational"{}    \\\cline{1-4}
+{\ttfamily @x}   &Exception   &A language-\/dependent error representation potentially including backtrace   &\\\cline{1-4}
+{\ttfamily @i}   &Event id   &An implementation specific event id (string or number)   &\\\cline{1-4}
+{\ttfamily @r}   &Renderings   &If {\ttfamily @mt} includes tokens with programming-\/language-\/specific formatting, an array of pre-\/rendered values for each such token   &May be omitted; if present, the count of renderings must match the count of formatted tokens exactly   \\\cline{1-4}
+\end{longtabu}
+
+
+The {\ttfamily @} sigil may be escaped at the start of a user property name by doubling, e.\+g. {\ttfamily @@name} denotes a property called {\ttfamily @name}.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md166}{}\doxyparagraph{\texorpdfstring{Batch format}{Batch format}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md166}
+When events are batched into a single payload, a newline-\/delimited stream of JSON documents is required. Either {\ttfamily \textbackslash{}n} or {\ttfamily \textbackslash{}r\textbackslash{}n} delimiters may be used. Batches of newline-\/separated compact JSON events can use the (unofficial) MIME type {\ttfamily application/vnd.\+serilog.\+clef}.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md167}{}\doxyparagraph{\texorpdfstring{Versioning}{Versioning}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md167}
+Versioning would be additive only, with no version identifier; implementations should treat any unrecognised reified properties as if they are user data.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md168}{}\doxysubsection{\texorpdfstring{Comparison}{Comparison}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md168}
+The output and benchmarks below compare the compact JSON formatter with Serilog\textquotesingle{}s built-\/in {\ttfamily Json\+Formatter}.
+
+{\bfseries{Event}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Log.Information(\textcolor{stringliteral}{"{}Hello,\ \{@User\},\ \{N:x8\}\ at\ \{Now\}"{}},}
+\DoxyCodeLine{\ \ \textcolor{keyword}{new}}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ Name\ =\ \textcolor{stringliteral}{"{}nblumhardt"{}},}
+\DoxyCodeLine{\ \ \ \ Tags\ =\ \textcolor{keyword}{new}[]\ \{\ 1,\ 2,\ 3\ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ 123,}
+\DoxyCodeLine{\ \ DateTime.Now);}
+
+\end{DoxyCode}
+
+
+{\bfseries{Default {\ttfamily Json\+Formatter}}} 292 bytes
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}Timestamp"{}:"{}2016-\/06-\/07T13:44:57.8532799+10:00"{},"{}Level"{}:"{}Information"{},"{}MessageT}
+\DoxyCodeLine{emplate"{}:"{}Hello,\ \{@User\},\ \{N:x8\}\ at\ \{Now\}"{},"{}Properties"{}:\{"{}User"{}:\{"{}Name"{}:"{}nblumha}
+\DoxyCodeLine{rdt"{},"{}Tags"{}:[1,2,3]\},"{}N"{}:123,"{}Now"{}:"{}2016-\/06-\/07T13:44:57.8532799+10:00"{}\},"{}Renderi}
+\DoxyCodeLine{ngs"{}:\{"{}N"{}:[\{"{}Format"{}:"{}x8"{},"{}Rendering"{}:"{}0000007b"{}\}]\}\}}
+
+\end{DoxyCode}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily Compact\+Json\+Formatter}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 187 bytes (0.\+64)
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}@t"{}:"{}2016-\/06-\/07T03:44:57.8532799Z"{},"{}@mt"{}:"{}Hello,\ \{@User\},\ \{N:x8\}\ at\ \{Now\}"{},"{}@r}
+\DoxyCodeLine{"{}:["{}0000007b"{}],"{}User"{}:\{"{}Name"{}:"{}nblumhardt"{},"{}Tags"{}:[1,2,3]\},"{}N"{}:123,"{}Now"{}:2016-\/06}
+\DoxyCodeLine{-\/07T13:44:57.8532799+10:00\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{Formatting benchmark}}
+
+See {\ttfamily test/\+Serilog.\+Formatting.\+Compact.\+Tests/\+Formatting\+Benchmarks.cs}.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Formatter   }&\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Median   }&\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Std\+Dev   }&\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Scaled    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Formatter   }&\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Median   }&\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Std\+Dev   }&\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Scaled    }\\\cline{1-4}
+\endhead
+{\ttfamily Json\+Formatter}   &\PBS\raggedleft 11.\+2775 {$\mu$}s   &\PBS\raggedleft 0.\+0682 {$\mu$}s   &\PBS\raggedleft 1.\+00    \\\cline{1-4}
+{\ttfamily Compact\+Json\+Formatter}   &\PBS\raggedleft 6.\+0315 {$\mu$}s   &\PBS\raggedleft 0.\+0429 {$\mu$}s   &\PBS\raggedleft 0.\+53    \\\cline{1-4}
+{\ttfamily Json\+Formatter(render\+Message\+: true)}   &\PBS\raggedleft 13.\+7585 {$\mu$}s   &\PBS\raggedleft 0.\+1194 {$\mu$}s   &\PBS\raggedleft 1.\+22    \\\cline{1-4}
+{\ttfamily Rendered\+Compact\+Json\+Formatter}   &\PBS\raggedleft 7.\+0680 {$\mu$}s   &\PBS\raggedleft 0.\+0605 {$\mu$}s   &\PBS\raggedleft 0.\+63   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md169}{}\doxysubsection{\texorpdfstring{Tools}{Tools}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_formatting_8_compact_82_80_80_2_r_e_a_d_m_e_autotoc_md169}
+Several tools are available for working with the CLEF format.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{\href{https://github.com/Analogy-LogViewer/Analogy.LogViewer.Serilog}{\texttt{ {\itshape Analogy.\+Log\+Viewer.\+Serilog}}}}} -\/ CLEF parser for \href{https://github.com/Analogy-LogViewer/Analogy.LogViewer}{\texttt{ Analogy Log Viewer}}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\href{https://github.com/datalust/clef-tool}{\texttt{ {\ttfamily clef-\/tool}}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} -\/ a CLI application for processing CLEF files
+\item {\bfseries{\href{https://github.com/warrenbuckley/Compact-Log-Format-Viewer}{\texttt{ Compact Log Format Viewer}}}} -\/ a cross-\/platform viewer for CLEF files
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\href{https://github.com/datalust/seqcli}{\texttt{ {\ttfamily seqcli}}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} -\/ pretty-\/{\ttfamily print} CLEF files at the command-\/line, or {\ttfamily ingest} CLEF files into \href{https://datalust.co/seq}{\texttt{ Seq}} for search, and analysis
+\item {\bfseries{\href{https://github.com/serilog/serilog-formatting-compact-reader}{\texttt{ {\itshape Serilog.\+Formatting.\+Compact.\+Reader}}}}} -\/ convert CLEF documents back into Serilog {\ttfamily Log\+Event}s 
+\end{DoxyItemize}

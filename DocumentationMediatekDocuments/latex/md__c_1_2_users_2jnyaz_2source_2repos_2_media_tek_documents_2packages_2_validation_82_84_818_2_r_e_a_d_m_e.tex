@@ -1,0 +1,33 @@
+\chapter{Validation}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_validation_82_84_818_2_r_e_a_d_m_e}{}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_validation_82_84_818_2_r_e_a_d_m_e}\index{Validation@{Validation}}
+{\itshape Method input validation and runtime checks that report errors or throw exceptions when failures are detected.}
+
+\href{https://ci.appveyor.com/project/AArnott/validation/branch/master}{\texttt{ }} \href{https://nuget.org/packages/Validation}{\texttt{ }}
+
+This project is available as the \href{http://nuget.org/packages/Validation}{\texttt{ Validation}} Nu\+Get package.
+
+Basic input validation via the {\ttfamily Requires} class throws an Argument\+Exception. \begin{DoxyVerb}Requires.NotNull(arg1, "arg1");
+Requires.NotNullOrEmpty(arg2, "arg2");
+\end{DoxyVerb}
+ State validation via the {\ttfamily Verify} class throws an Invalid\+Operation\+Exception. \begin{DoxyVerb}Verify.Operation(condition, "some error occurred.");
+\end{DoxyVerb}
+ Internal integrity checks via the {\ttfamily Assumes} class throws an Internal\+Error\+Exception. \begin{DoxyVerb}Assumes.True(condition, "some error");
+\end{DoxyVerb}
+ Warning signs that should not throw exceptions via the {\ttfamily Report} class. \begin{DoxyVerb}Report.IfNot(condition, "some error");
+\end{DoxyVerb}
+ \hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_validation_82_84_818_2_r_e_a_d_m_e_autotoc_md180}{}\doxysection{\texorpdfstring{Code Snippets}{Code Snippets}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_validation_82_84_818_2_r_e_a_d_m_e_autotoc_md180}
+Make writing input validation especially convenient with \mbox{[}code snippets\mbox{]}\mbox{[}2\mbox{]}. Run the tools\textbackslash{}install\+\_\+snippets.\+cmd script within this package to copy the code snippets into your {\ttfamily Documents\textbackslash{}Visual Studio 201x\textbackslash{}Code Snippets\textbackslash{}Visual C\#\textbackslash{}My Code Snippets} folder(s) and just type the first few letters of the code snippet name to get auto-\/completion assisted input validation.
+
+Note that if you have Resharper installed, code snippets don\textquotesingle{}t appear in auto-\/completion lists so you may have to press {\ttfamily Ctrl+J} after the first few letters of the code snippet name for it to become available.
+
+Example\+: \begin{DoxyVerb}private void SomeMethod(string input) {
+    rnne<TAB>
+}
+\end{DoxyVerb}
+ Expands to \begin{DoxyVerb}private void SomeMethod(string input) {
+    Requires.NotNullOrEmpty(paramName, nameof(paramName));
+}
+\end{DoxyVerb}
+ And the first {\ttfamily param\+Name} is selected. Simply type the actual parameter name (Intellisense will auto-\/complete for you) and then the quoted param\+Name name will automatically be changed to match.
+
+The two snippets are {\ttfamily rnn} and {\ttfamily rnne} which expand to check for null inputs or null-\/or-\/empty inputs, respectively. 

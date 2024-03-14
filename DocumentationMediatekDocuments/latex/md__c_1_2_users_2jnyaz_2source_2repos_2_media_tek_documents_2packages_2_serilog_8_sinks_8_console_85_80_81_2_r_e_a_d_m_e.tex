@@ -1,0 +1,218 @@
+\chapter{Serilog.\+Sinks.\+Console \texorpdfstring{$<$}{<}a href="{}https\+://ci.\+appveyor.\+com/project/serilog/serilog-\/sinks-\/console/branch/master"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://ci.\+appveyor.\+com/api/projects/status/w1w3m1wyk3in1c96/branch/master?svg=true"{} alt="{}\+Build status"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://www.\+nuget.\+org/packages/\+Serilog.\+Sinks.\+Console/"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}http\+://img.\+shields.\+io/nuget/v/\+Serilog.\+Sinks.\+Console.\+svg?style=flat"{} alt="{}\+Nu\+Get Version"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://github.\+com/serilog/serilog/wiki"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/badge/docs-\/wiki-\/yellow.\+svg"{} alt="{}\+Documentation"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}https\+://gitter.\+im/serilog/serilog"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/gitter/room/serilog/serilog.\+svg"{} alt="{}\+Join the chat at https\+://gitter.\+im/serilog/serilog"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}a href="{}http\+://stackoverflow.\+com/questions/tagged/serilog"{} \texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}img src="{}https\+://img.\+shields.\+io/badge/stackoverflow-\/serilog-\/orange.\+svg"{} alt="{}\+Help"{}/\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/a\texorpdfstring{$>$}{>}}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e}{}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e}\index{Serilog.Sinks.Console $<$a href="{}https://ci.appveyor.com/project/serilog/serilog-\/sinks-\/console/branch/master"{} $>$$<$img src="{}https://ci.appveyor.com/api/projects/status/w1w3m1wyk3in1c96/branch/master?svg=true"{} alt="{}Build status"{}/$>$$<$/a$>$ $<$a href="{}https://www.nuget.org/packages/Serilog.Sinks.Console/"{} $>$$<$img src="{}http://img.shields.io/nuget/v/Serilog.Sinks.Console.svg?style=flat"{} alt="{}NuGet Version"{}/$>$$<$/a$>$ $<$a href="{}https://github.com/serilog/serilog/wiki"{} $>$$<$img src="{}https://img.shields.io/badge/docs-\/wiki-\/yellow.svg"{} alt="{}Documentation"{}/$>$$<$/a$>$ $<$a href="{}https://gitter.im/serilog/serilog"{} $>$$<$img src="{}https://img.shields.io/gitter/room/serilog/serilog.svg"{} alt="{}Join the chat at https://gitter.im/serilog/serilog"{}/$>$$<$/a$>$ $<$a href="{}http://stackoverflow.com/questions/tagged/serilog"{} $>$$<$img src="{}https://img.shields.io/badge/stackoverflow-\/serilog-\/orange.svg"{} alt="{}Help"{}/$>$$<$/a$>$@{Serilog.Sinks.Console $<$a href=""https://ci.appveyor.com/project/serilog/serilog-\/sinks-\/console/branch/master"" $>$$<$img src=""https://ci.appveyor.com/api/projects/status/w1w3m1wyk3in1c96/branch/master?svg=true"" alt=""Build status""/$>$$<$/a$>$ $<$a href=""https://www.nuget.org/packages/Serilog.Sinks.Console/"" $>$$<$img src=""http://img.shields.io/nuget/v/Serilog.Sinks.Console.svg?style=flat"" alt=""NuGet Version""/$>$$<$/a$>$ $<$a href=""https://github.com/serilog/serilog/wiki"" $>$$<$img src=""https://img.shields.io/badge/docs-\/wiki-\/yellow.svg"" alt=""Documentation""/$>$$<$/a$>$ $<$a href=""https://gitter.im/serilog/serilog"" $>$$<$img src=""https://img.shields.io/gitter/room/serilog/serilog.svg"" alt=""Join the chat at https://gitter.im/serilog/serilog""/$>$$<$/a$>$ $<$a href=""http://stackoverflow.com/questions/tagged/serilog"" $>$$<$img src=""https://img.shields.io/badge/stackoverflow-\/serilog-\/orange.svg"" alt=""Help""/$>$$<$/a$>$}}
+\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md170}%
+\Hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md170}%
+ A Serilog sink that writes log events to the Windows Console or an ANSI terminal via standard output. Coloring and custom themes are supported, including ANSI 256-\/color themes on mac\+OS, Linux and Windows 10. The default output is plain text; JSON formatting can be plugged in using a package such as \href{https://github.com/serilog/serilog-formatting-compact}{\texttt{ {\itshape Serilog.\+Formatting.\+Compact}}}.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md171}{}\doxysubsection{\texorpdfstring{Getting started}{Getting started}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md171}
+To use the console sink, first install the \href{https://nuget.org/packages/serilog.sinks.console}{\texttt{ Nu\+Get package}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dotnet\ add\ package\ Serilog.Sinks.Console}
+
+\end{DoxyCode}
+
+
+Then enable the sink using {\ttfamily Write\+To.\+Console()}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Log.Logger\ =\ \textcolor{keyword}{new}\ LoggerConfiguration()}
+\DoxyCodeLine{\ \ \ \ .WriteTo.Console()}
+\DoxyCodeLine{\ \ \ \ .CreateLogger();}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{Log.Information(\textcolor{stringliteral}{"{}Hello,\ world!"{}});}
+
+\end{DoxyCode}
+
+
+Log events will be printed to {\ttfamily STDOUT}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[12:50:51\ INF]\ Hello,\ world!}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md172}{}\doxysubsection{\texorpdfstring{Themes}{Themes}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md172}
+The sink will colorize output by default\+:
+
+
+
+Themes can be specified when configuring the sink\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.WriteTo.Console(theme:\ AnsiConsoleTheme.Code)}
+
+\end{DoxyCode}
+
+
+The following built-\/in themes are available\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Console\+Theme.\+None} -\/ no styling
+\item {\ttfamily System\+Console\+Theme.\+Literate} -\/ styled to replicate {\itshape Serilog.\+Sinks.\+Literate}, using the {\ttfamily System.\+Console} coloring modes supported on all Windows/.NET targets; {\bfseries{this is the default when no theme is specified}}
+\item {\ttfamily System\+Console\+Theme.\+Grayscale} -\/ a theme using only shades of gray, white, and black
+\item {\ttfamily Ansi\+Console\+Theme.\+Literate} -\/ an ANSI 256-\/color version of the "{}literate"{} theme
+\item {\ttfamily Ansi\+Console\+Theme.\+Grayscale} -\/ an ANSI 256-\/color version of the "{}grayscale"{} theme
+\item {\ttfamily Ansi\+Console\+Theme.\+Code} -\/ an ANSI 256-\/color Visual Studio Code-\/inspired theme
+\item {\ttfamily Ansi\+Console\+Theme.\+Sixteen} -\/ an ANSI 16-\/color theme that works well with both light and dark backgrounds
+\end{DoxyItemize}
+
+Adding a new theme is straightforward; examples can be found in the \href{https://github.com/serilog/serilog-sinks-console/blob/dev/src/Serilog.Sinks.Console/Sinks/SystemConsole/Themes/SystemConsoleThemes.cs}{\texttt{ {\ttfamily System\+Console\+Themes}}} and \href{https://github.com/serilog/serilog-sinks-console/blob/dev/src/Serilog.Sinks.Console/Sinks/SystemConsole/Themes/AnsiConsoleThemes.cs}{\texttt{ {\ttfamily Ansi\+Console\+Themes}}} classes.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md173}{}\doxysubsection{\texorpdfstring{Output templates}{Output templates}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md173}
+The format of events to the console can be modified using the {\ttfamily output\+Template} configuration parameter\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.WriteTo.Console(}
+\DoxyCodeLine{\ \ \ \ outputTemplate:\ \textcolor{stringliteral}{"{}[\{Timestamp:HH:mm:ss\}\ \{Level:u3\}]\ \{Message:lj\}\{NewLine\}\{Exception\}"{}})}
+
+\end{DoxyCode}
+
+
+The default template, shown in the example above, uses built-\/in properties like {\ttfamily Timestamp} and {\ttfamily Level}. Properties from events, including those attached using \href{https://github.com/serilog/serilog/wiki/Enrichment}{\texttt{ enrichers}}, can also appear in the output template.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md174}{}\doxysubsection{\texorpdfstring{JSON output}{JSON output}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md174}
+The sink can write JSON output instead of plain text. {\ttfamily Compact\+Json\+Formatter} or {\ttfamily Rendered\+Compact\+Json\+Formatter} from \href{https://github.com/serilog/serilog-formatting-compact}{\texttt{ Serilog.\+Formatting.\+Compact}} is recommended\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dotnet\ add\ package\ Serilog.Formatting.Compact}
+
+\end{DoxyCode}
+
+
+Pass a formatter to the {\ttfamily Console()} configuration method\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.WriteTo.Console(\textcolor{keyword}{new}\ RenderedCompactJsonFormatter())}
+
+\end{DoxyCode}
+
+
+Output theming is not available when custom formatters are used.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md175}{}\doxysubsection{\texorpdfstring{XML {\ttfamily \texorpdfstring{$<$}{<}app\+Settings\texorpdfstring{$>$}{>}} configuration}{XML {\ttfamily \texorpdfstring{$<$}{<}app\+Settings\texorpdfstring{$>$}{>}} configuration}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md175}
+To use the console sink with the \href{https://github.com/serilog/serilog-settings-appsettings}{\texttt{ Serilog.\+Settings.\+App\+Settings}} package, first install that package if you haven\textquotesingle{}t already done so\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dotnet\ add\ package\ Serilog.Settings.AppSettings}
+
+\end{DoxyCode}
+
+
+Instead of configuring the logger in code, call {\ttfamily Read\+From.\+App\+Settings()}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ log\ =\ \textcolor{keyword}{new}\ LoggerConfiguration()}
+\DoxyCodeLine{\ \ \ \ .ReadFrom.AppSettings()}
+\DoxyCodeLine{\ \ \ \ .CreateLogger();}
+
+\end{DoxyCode}
+
+
+In your application\textquotesingle{}s {\ttfamily App.\+config} or {\ttfamily Web.\+config} file, specify the console sink assembly under the {\ttfamily \texorpdfstring{$<$}{<}app\+Settings\texorpdfstring{$>$}{>}} node\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<\textcolor{keywordtype}{configuration}>}
+\DoxyCodeLine{\ \ <\textcolor{keywordtype}{appSettings}>}
+\DoxyCodeLine{\ \ \ \ <\textcolor{keywordtype}{add}\ \textcolor{keyword}{key}=\textcolor{stringliteral}{"{}serilog:using:Console"{}}\ \textcolor{keyword}{value}=\textcolor{stringliteral}{"{}Serilog.Sinks.Console"{}}\ />}
+\DoxyCodeLine{\ \ \ \ <\textcolor{keywordtype}{add}\ \textcolor{keyword}{key}=\textcolor{stringliteral}{"{}serilog:write-\/to:Console"{}}\ />}
+
+\end{DoxyCode}
+
+
+To configure the console sink with a different theme and include the {\ttfamily Source\+Context} in the output, change your {\ttfamily App.\+config}/{\ttfamily Web.\+config} to\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<\textcolor{keywordtype}{configuration}>}
+\DoxyCodeLine{\ \ <\textcolor{keywordtype}{appSettings}>}
+\DoxyCodeLine{\ \ \ \ <\textcolor{keywordtype}{add}\ \textcolor{keyword}{key}=\textcolor{stringliteral}{"{}serilog:using:Console"{}}\ \textcolor{keyword}{value}=\textcolor{stringliteral}{"{}Serilog.Sinks.Console"{}}\ />}
+\DoxyCodeLine{\ \ \ \ <\textcolor{keywordtype}{add}\ \textcolor{keyword}{key}=\textcolor{stringliteral}{"{}serilog:write-\/to:Console.theme"{}}\ \textcolor{keyword}{value}=\textcolor{stringliteral}{"{}Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code,\ Serilog.Sinks.Console"{}}\ />}
+\DoxyCodeLine{\ \ \ \ <\textcolor{keywordtype}{add}\ \textcolor{keyword}{key}=\textcolor{stringliteral}{"{}serilog:write-\/to:Console.outputTemplate"{}}\ \textcolor{keyword}{value}="{}[\{\textcolor{keyword}{Timestamp:HH:mm:ss}\}\ \{\textcolor{keyword}{Level:u3}\}]\ \{\textcolor{keyword}{Message:lj}\}\ \&\textcolor{keyword}{lt};\textcolor{keyword}{s:}\{\textcolor{keyword}{SourceContext}\}\&\textcolor{keyword}{gt};\{\textcolor{keyword}{NewLine}\}\{\textcolor{keyword}{Exception}\}"{}\ />}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md176}{}\doxysubsection{\texorpdfstring{JSON {\ttfamily appsettings.\+json} configuration}{JSON {\ttfamily appsettings.\+json} configuration}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md176}
+To use the console sink with {\itshape Microsoft.\+Extensions.\+Configuration}, for example with ASP.\+NET Core or .NET Core, use the \href{https://github.com/serilog/serilog-settings-configuration}{\texttt{ Serilog.\+Settings.\+Configuration}} package. First install that package if you have not already done so\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{dotnet\ add\ package\ Serilog.Settings.Configuration}
+
+\end{DoxyCode}
+
+
+Instead of configuring the sink directly in code, call {\ttfamily Read\+From.\+Configuration()}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ configuration\ =\ \textcolor{keyword}{new}\ ConfigurationBuilder()}
+\DoxyCodeLine{\ \ \ \ .AddJsonFile(\textcolor{stringliteral}{"{}appsettings.json"{}})}
+\DoxyCodeLine{\ \ \ \ .Build();}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ logger\ =\ \textcolor{keyword}{new}\ LoggerConfiguration()}
+\DoxyCodeLine{\ \ \ \ .ReadFrom.Configuration(configuration)}
+\DoxyCodeLine{\ \ \ \ .CreateLogger();}
+
+\end{DoxyCode}
+
+
+In your {\ttfamily appsettings.\+json} file, under the {\ttfamily Serilog} node, \+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}Serilog"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}WriteTo"{}:\ [\{"{}Name"{}:\ "{}Console"{}\}]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+To configure the console sink with a different theme and include the {\ttfamily Source\+Context} in the output, change your {\ttfamily appsettings.\+json} to\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}Serilog"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}WriteTo"{}:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ "{}Name"{}:\ "{}Console"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ "{}Args"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}theme"{}:\ "{}Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code,\ Serilog.Sinks.Console"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}outputTemplate"{}:\ "{}[\{Timestamp:HH:mm:ss\}\ \{Level:u3\}]\ \{Message:lj\}\ <s:\{SourceContext\}>\{NewLine\}\{Exception\}"{}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ ]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md177}{}\doxysubsection{\texorpdfstring{Performance}{Performance}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md177}
+Console logging is synchronous and this can cause bottlenecks in some deployment scenarios. For high-\/volume console logging, consider using \href{https://github.com/serilog/serilog-sinks-async}{\texttt{ {\itshape Serilog.\+Sinks.\+Async}}} to move console writes to a background thread\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ dotnet\ add\ package\ serilog.sinks.async}}
+\DoxyCodeLine{}
+\DoxyCodeLine{Log.Logger\ =\ \textcolor{keyword}{new}\ LoggerConfiguration()}
+\DoxyCodeLine{\ \ \ \ .WriteTo.Async(wt\ =>\ wt.Console())}
+\DoxyCodeLine{\ \ \ \ .CreateLogger();}
+
+\end{DoxyCode}
+\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md178}{}\doxysubsection{\texorpdfstring{Contributing}{Contributing}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md178}
+Would you like to help make the Serilog console sink even better? We keep a list of issues that are approachable for newcomers under the \href{https://github.com/serilog/serilog-sinks-console/issues?labels=up-for-grabs&state=open}{\texttt{ up-\/for-\/grabs}} label. Before starting work on a pull request, we suggest commenting on, or raising, an issue on the issue tracker so that we can help and coordinate efforts. For more details check out our contributing guide.
+
+When contributing please keep in mind our Code of Conduct.\hypertarget{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md179}{}\doxysubsection{\texorpdfstring{Detailed build status}{Detailed build status}}\label{md__c_1_2_users_2jnyaz_2source_2repos_2_media_tek_documents_2packages_2_serilog_8_sinks_8_console_85_80_81_2_r_e_a_d_m_e_autotoc_md179}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Branch   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ App\+Veyor   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Travis    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Branch   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ App\+Veyor   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Travis    }\\\cline{1-3}
+\endhead
+dev   &\href{https://ci.appveyor.com/project/serilog/serilog-sinks-console/branch/dev}{\texttt{ }}   &\href{https://travis-ci.org/serilog/serilog-sinks-console}{\texttt{ }}    \\\cline{1-3}
+main   &\href{https://ci.appveyor.com/project/serilog/serilog-sinks-console/branch/main}{\texttt{ }}   &\href{https://travis-ci.org/serilog/serilog-sinks-console}{\texttt{ }}   \\\cline{1-3}
+\end{longtabu}
+
+
+{\itshape Copyright \copyright{} Serilog Contributors -\/ Provided under the \href{http://apache.org/licenses/LICENSE-2.0.html}{\texttt{ Apache License, Version 2.\+0}}.} 

@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="class_media_tek_documents_1_1_form_auth" kind="class" language="C#" prot="public">
+    <compoundname>MediaTekDocuments::FormAuth</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Form</basecompoundref>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_media_tek_documents_1_1_form_auth_1a171b73d3174f54db23a2d0ca130e11f9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>int</type>
+        <definition>int MediaTekDocuments.FormAuth.ServiceId</definition>
+        <argsstring></argsstring>
+        <name>ServiceId</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.ServiceId</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.cs" line="17" column="20" bodyfile="FormAuth.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_form_auth_1a2fd6dc649dbb006e1d9f71534d00dd19" prot="private" static="no" mutable="no">
+        <type>readonly FormAuthController</type>
+        <definition>readonly FormAuthController MediaTekDocuments.FormAuth.controller</definition>
+        <argsstring></argsstring>
+        <name>controller</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.controller</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.cs" line="19" column="45" bodyfile="FormAuth.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_form_auth_1accd4bcb2327b373e85d806fe0bb983dd" prot="private" static="no" mutable="no">
+        <type>System.ComponentModel.IContainer</type>
+        <definition>System.ComponentModel.IContainer MediaTekDocuments.FormAuth.components</definition>
+        <argsstring></argsstring>
+        <name>components</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.components</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Required designer variable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.Designer.cs" line="8" column="48" bodyfile="FormAuth.Designer.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_form_auth_1aaf9aa565571f71696e878dd0f43b7534" prot="private" static="no" mutable="no">
+        <type>System.Windows.Forms.TextBox</type>
+        <definition>System.Windows.Forms.TextBox MediaTekDocuments.FormAuth.textBoxMdp</definition>
+        <argsstring></argsstring>
+        <name>textBoxMdp</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.textBoxMdp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.Designer.cs" line="99" column="43" bodyfile="FormAuth.Designer.cs" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_form_auth_1ae5693c4e5eb4b4b0db672ba88d166ba7" prot="private" static="no" mutable="no">
+        <type>System.Windows.Forms.TextBox</type>
+        <definition>System.Windows.Forms.TextBox MediaTekDocuments.FormAuth.textBoxId</definition>
+        <argsstring></argsstring>
+        <name>textBoxId</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.textBoxId</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.Designer.cs" line="100" column="43" bodyfile="FormAuth.Designer.cs" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_form_auth_1a26face7607bac953fc0fceb337b66dfb" prot="private" static="no" mutable="no">
+        <type>System.Windows.Forms.Label</type>
+        <definition>System.Windows.Forms.Label MediaTekDocuments.FormAuth.labelMdp</definition>
+        <argsstring></argsstring>
+        <name>labelMdp</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.labelMdp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.Designer.cs" line="101" column="41" bodyfile="FormAuth.Designer.cs" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_form_auth_1a45086d1b0bf21b61ebf84961faa22dba" prot="private" static="no" mutable="no">
+        <type>System.Windows.Forms.Label</type>
+        <definition>System.Windows.Forms.Label MediaTekDocuments.FormAuth.labelId</definition>
+        <argsstring></argsstring>
+        <name>labelId</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.labelId</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.Designer.cs" line="102" column="41" bodyfile="FormAuth.Designer.cs" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_media_tek_documents_1_1_form_auth_1ad34ff2e3ad57365aa80fbfb5eff143c7" prot="private" static="no" mutable="no">
+        <type>System.Windows.Forms.Button</type>
+        <definition>System.Windows.Forms.Button MediaTekDocuments.FormAuth.buttonConnexion</definition>
+        <argsstring></argsstring>
+        <name>buttonConnexion</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.buttonConnexion</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.Designer.cs" line="103" column="42" bodyfile="FormAuth.Designer.cs" bodystart="103" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_media_tek_documents_1_1_form_auth_1a82555a1e2580dfaef40818f40eca9d66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MediaTekDocuments.FormAuth.FormAuth</definition>
+        <argsstring>()</argsstring>
+        <name>FormAuth</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.FormAuth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.cs" line="21" column="16" bodyfile="FormAuth.cs" bodystart="21" bodyend="27"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_media_tek_documents_1_1_form_auth_1a0238a880290d844527c9cd74a0c49082" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MediaTekDocuments.FormAuth.buttonConnexion_Click</definition>
+        <argsstring>(object sender, EventArgs e)</argsstring>
+        <name>buttonConnexion_Click</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.buttonConnexion_Click</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>EventArgs</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.cs" line="29" column="22" bodyfile="FormAuth.cs" bodystart="29" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_media_tek_documents_1_1_form_auth_1ad20e5c6abcb9e8af0eb105265394ef9b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MediaTekDocuments.FormAuth.InitializeComponent</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeComponent</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.InitializeComponent</qualifiedname>
+        <briefdescription>
+<para>Required method for Designer support - do not modify the contents of this method with the code editor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.Designer.cs" line="29" column="22" bodyfile="FormAuth.Designer.cs" bodystart="29" bodyend="95"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_media_tek_documents_1_1_form_auth_1a487b47d46d7d873ac93ba687b80191c3" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void MediaTekDocuments.FormAuth.Dispose</definition>
+        <argsstring>(bool disposing)</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>MediaTekDocuments.FormAuth.Dispose</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>disposing</declname>
+        </param>
+        <briefdescription>
+<para>Clean up any resources being used. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>disposing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>true if managed resources should be disposed; otherwise, false.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FormAuth.Designer.cs" line="14" column="33" bodyfile="FormAuth.Designer.cs" bodystart="14" bodyend="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Form</label>
+      </node>
+      <node id="1">
+        <label>MediaTekDocuments.FormAuth</label>
+        <link refid="class_media_tek_documents_1_1_form_auth"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Form</label>
+      </node>
+      <node id="1">
+        <label>MediaTekDocuments.FormAuth</label>
+        <link refid="class_media_tek_documents_1_1_form_auth"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="FormAuth.cs" line="15" column="19" bodyfile="FormAuth.cs" bodystart="16" bodyend="66"/>
+    <listofallmembers>
+      <member refid="class_media_tek_documents_1_1_form_auth_1ad34ff2e3ad57365aa80fbfb5eff143c7" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>buttonConnexion</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1a0238a880290d844527c9cd74a0c49082" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>buttonConnexion_Click</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1accd4bcb2327b373e85d806fe0bb983dd" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>components</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1a2fd6dc649dbb006e1d9f71534d00dd19" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>controller</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1a487b47d46d7d873ac93ba687b80191c3" prot="protected" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>Dispose</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1a82555a1e2580dfaef40818f40eca9d66" prot="public" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>FormAuth</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1ad20e5c6abcb9e8af0eb105265394ef9b" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>InitializeComponent</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1a45086d1b0bf21b61ebf84961faa22dba" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>labelId</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1a26face7607bac953fc0fceb337b66dfb" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>labelMdp</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1a171b73d3174f54db23a2d0ca130e11f9" prot="public" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>ServiceId</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1ae5693c4e5eb4b4b0db672ba88d166ba7" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>textBoxId</name></member>
+      <member refid="class_media_tek_documents_1_1_form_auth_1aaf9aa565571f71696e878dd0f43b7534" prot="private" virt="non-virtual"><scope>MediaTekDocuments::FormAuth</scope><name>textBoxMdp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

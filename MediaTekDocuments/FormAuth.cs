@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace MediaTekDocuments
 {
+    /// <summary>
+    /// formulaire d'authentification
+    /// </summary>
     public partial class FormAuth : Form
     {
         public int ServiceId { get; private set; }

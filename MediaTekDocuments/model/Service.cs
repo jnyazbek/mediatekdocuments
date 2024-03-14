@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MediaTekDocuments.model
 {
+    /// <summary>
+    /// classe metier identifiant les differents services ammanés à utiliser l'application
+    /// </summary>
     public class Service
     {
         public int Id { get; set; }
