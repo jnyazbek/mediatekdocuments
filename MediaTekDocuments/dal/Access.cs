@@ -11,6 +11,7 @@ using MediaTekDocuments.Utils;
 using Serilog;
 using Serilog.Formatting.Compact;
 using Serilog.Formatting.Json;
+using static System.Net.WebRequestMethods;
 
 
 
@@ -24,9 +25,9 @@ namespace MediaTekDocuments.dal
     public class Access
     {
         /// <summary>
-        /// adresse de l'API
+        /// adresse de l'API//"http://localhost/rest_mediatekdocuments/";//
         /// </summary>
-        private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
+        private static readonly string uriApi = "http://164.68.120.155/rest_mediatekdocuments/";
         /// <summary>
         /// vers app.config
         /// </summary>
