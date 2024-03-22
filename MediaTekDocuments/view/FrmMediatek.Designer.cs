@@ -1038,6 +1038,7 @@ namespace MediaTekDocuments.view
             this.dataGridViewLivres.Size = new System.Drawing.Size(391, 134);
             this.dataGridViewLivres.TabIndex = 52;
             this.dataGridViewLivres.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLivres_CellClick);
+            this.dataGridViewLivres.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewLivres_ColumnHeaderMouseClick);
             // 
             // textBoxCheminImage
             // 

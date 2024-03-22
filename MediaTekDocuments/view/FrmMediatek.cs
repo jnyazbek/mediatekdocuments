@@ -1681,6 +1681,63 @@ namespace MediaTekDocuments.view
         private void dataGridViewLivres_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
+
+            string titreColonne = dataGridViewLivres.Columns[e.ColumnIndex].HeaderText;
+            List<CommandeDocument> sortedList = new List<CommandeDocument>();
+            switch (titreColonne)
+            {
+                case "Id":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDocument.OrderBy(o => o.Id).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDocument.OrderByDescending(o => o.Id).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "Date de commande":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDocument.OrderBy(o => o.Date).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDocument.OrderByDescending(o => o.Date).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "Montant":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDocument.OrderBy(o => o.Montant).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDocument.OrderByDescending(o => o.Montant).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+                case "NbExemplaire":
+                    if (orderLivreASC == true)
+                    {
+                        sortedList = lesCommandesDocument.OrderBy(o => o.NbExemplaire).ToList();
+                        orderLivreASC = false;
+                    }
+                    else
+                    {
+                        sortedList = lesCommandesDocument.OrderByDescending(o => o.NbExemplaire).ToList();
+                        orderLivreASC = true;
+                    }
+                    break;
+
+            }
+
+            RemplirCommandesLivresListe(sortedList);
         }
 
         #endregion
@@ -2159,18 +2216,7 @@ namespace MediaTekDocuments.view
                         orderLivreASC = true;
                     }
                     break;
-                case "Suivi":
-                    if (orderLivreASC == true)
-                    {
-                        sortedList = lesCommandesDVD.OrderBy(o => o.Suivi).ToList();
-                        orderLivreASC = false;
-                    }
-                    else
-                    {
-                        sortedList = lesCommandesDVD.OrderByDescending(o => o.LibelleSuivi).ToList();
-                        orderLivreASC = true;
-                    }
-                    break;
+              
                
             }
 
@@ -2668,6 +2714,7 @@ namespace MediaTekDocuments.view
                     break;
             }
        }
+
     }
 }
     
