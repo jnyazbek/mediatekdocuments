@@ -1,0 +1,70 @@
+\doxysection{Media\+Tek\+Documents.\+manager.\+Api\+Rest Class Reference}
+\hypertarget{class_media_tek_documents_1_1manager_1_1_api_rest}{}\label{class_media_tek_documents_1_1manager_1_1_api_rest}\index{MediaTekDocuments.manager.ApiRest@{MediaTekDocuments.manager.ApiRest}}
+
+
+Classe indépendante d\textquotesingle{}accès à une api rest avec éventuellement une "{}basic authorization"{}.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+JObject \mbox{\hyperlink{class_media_tek_documents_1_1manager_1_1_api_rest_a85a10d868f03ae106b8ea375bc687f5d}{Recup\+Distant}} (string methode, string url, string json\+Body=null)
+\begin{DoxyCompactList}\small\item\em envoie la requette et récupère la réponse de l\textquotesingle{}api \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_media_tek_documents_1_1manager_1_1_api_rest}{Api\+Rest}} \mbox{\hyperlink{class_media_tek_documents_1_1manager_1_1_api_rest_ade84494b4ed3528da480bd5a3c553105}{Get\+Instance}} (String uri\+Api, String authentication\+String)
+\begin{DoxyCompactList}\small\item\em Crée une instance unique de la classe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe indépendante d\textquotesingle{}accès à une api rest avec éventuellement une "{}basic authorization"{}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_media_tek_documents_1_1manager_1_1_api_rest_ade84494b4ed3528da480bd5a3c553105}\label{class_media_tek_documents_1_1manager_1_1_api_rest_ade84494b4ed3528da480bd5a3c553105} 
+\index{MediaTekDocuments.manager.ApiRest@{MediaTekDocuments.manager.ApiRest}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!MediaTekDocuments.manager.ApiRest@{MediaTekDocuments.manager.ApiRest}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_media_tek_documents_1_1manager_1_1_api_rest}{Api\+Rest}} Media\+Tek\+Documents.\+manager.\+Api\+Rest.\+Get\+Instance (\begin{DoxyParamCaption}\item[{String}]{uri\+Api,  }\item[{String}]{authentication\+String }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Crée une instance unique de la classe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uri\+Api} & adresse de l\textquotesingle{}api\\
+\hline
+{\em authentication\+String} & chaîne d\textquotesingle{}authentificatio (login\+:pwd)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_media_tek_documents_1_1manager_1_1_api_rest_a85a10d868f03ae106b8ea375bc687f5d}\label{class_media_tek_documents_1_1manager_1_1_api_rest_a85a10d868f03ae106b8ea375bc687f5d} 
+\index{MediaTekDocuments.manager.ApiRest@{MediaTekDocuments.manager.ApiRest}!RecupDistant@{RecupDistant}}
+\index{RecupDistant@{RecupDistant}!MediaTekDocuments.manager.ApiRest@{MediaTekDocuments.manager.ApiRest}}
+\doxysubsubsection{\texorpdfstring{RecupDistant()}{RecupDistant()}}
+{\footnotesize\ttfamily JObject Media\+Tek\+Documents.\+manager.\+Api\+Rest.\+Recup\+Distant (\begin{DoxyParamCaption}\item[{string}]{methode,  }\item[{string}]{url,  }\item[{string}]{json\+Body = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+envoie la requette et récupère la réponse de l\textquotesingle{}api 
+
+
+\begin{DoxyParams}{Parameters}
+{\em methode} & \\
+\hline
+{\em url} & \\
+\hline
+{\em json\+Body} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+manager/\mbox{\hyperlink{_api_rest_8cs}{Api\+Rest.\+cs}}\end{DoxyCompactItemize}
